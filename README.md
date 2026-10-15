@@ -5,6 +5,23 @@ one **XGBoost expert per latent state** (three by default). Each expert learns w
 causal regime probabilities blend their next-observation reference-return forecasts. A global XGBoost model
 and zero-return forecast provide fixed comparisons.
 
+## Advanced multi-asset extension
+
+The existing project now also contains a prespecified **EUR/CAD, GBP/CAD and AUD/CAD** study with 22 causal features, asset-specific HMM execution-regime forecasts, validation-selected XGBoost gates, volatility-targeted sizing and a self-financing reference ledger. Decisions are queued for one observation before hypothetical execution; the trained target is the subsequent reference return. Post-cost gross/per-asset caps, cash, entry/reversal/liquidation fees, cost sensitivity and delayed-label drift diagnostics are tested explicitly.
+
+```sh
+python -m src.models.advanced search
+python -m src.models.advanced test
+python -m src.models.advanced report
+python -m src.models.advanced forecast --panel data/external/multi-asset-v1/holdout/panel.csv
+```
+
+See [the frozen plan](docs/multi-asset-plan.json) and [advanced methodology](docs/multi-asset-study.md). Historical development ends in 2025; new 2026 EUR/GBP/AUD values are requested only after model and risk selection. USD/CAD 2026 was already observed and is excluded from new-test claims. The old checkpoints and commands below remain valid. This is still **non-executable reference-price research**, with no brokerage integration or trading actions.
+
+**Historical validation rejected extra complexity:** global XGBoost won among trained candidates but still trailed the zero forecast; cash won risk selection. The project preserves that result rather than forcing regime gating or trades. Active candidates' validation diagnostics remain available; final cash cost sensitivity is zero by construction, not proof of profitability.
+
+The once-released new three-asset test also favored zero forecasts: pooled RMSE **0.00298725 selected/global versus 0.00295177 zero**, across 582 labeled forecasts. Cash remained unchanged. [Executed results and actual checkpoint verification](docs/multi-asset-results.md) document the negative conclusion, source hashes, exact CLI reproduction and 25 passing tests.
+
 ```sh
 python -m venv .venv
 # Windows PowerShell: activate this repository's environment

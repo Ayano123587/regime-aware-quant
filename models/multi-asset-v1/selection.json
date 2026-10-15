@@ -1,0 +1,716 @@
+{
+  "plan_sha256": "be6fdc25562edb6ecbb598f726b77e8567535645363bb10edc32927786981239",
+  "historical_provenance": {
+    "url": "https://www.bankofcanada.ca/valet/observations/FXEURCAD,FXGBPCAD,FXAUDCAD/json?start_date=2017-01-01&end_date=2025-12-31",
+    "sha256": "58c8d02de064898f4387d5727972083d5ea3850aa94009da200f07fbad97df5e",
+    "assets": [
+      "FXEURCAD",
+      "FXGBPCAD",
+      "FXAUDCAD"
+    ],
+    "rows": 2244,
+    "first": "2017-01-03 00:00:00+00:00",
+    "last": "2025-12-31 00:00:00+00:00",
+    "retrieved_at_utc": "2026-10-15T20:09:46.213010+00:00",
+    "source": "Bank of Canada, Valet API; no endorsement",
+    "terms": "https://www.bankofcanada.ca/terms/",
+    "vintage_limitation": "Current API snapshot, not historical as-published vintages"
+  },
+  "features": [
+    "return_1",
+    "momentum_3",
+    "momentum_5",
+    "momentum_10",
+    "momentum_20",
+    "momentum_60",
+    "volatility_5",
+    "volatility_20",
+    "volatility_60",
+    "ewma_volatility",
+    "volatility_ratio",
+    "downside_20",
+    "drawdown_60",
+    "zscore_20",
+    "rsi_14",
+    "autocorrelation_20",
+    "skew_20",
+    "gap_days",
+    "peer_return_lag1",
+    "peer_momentum_lag1",
+    "peer_volatility_lag1",
+    "relative_momentum"
+  ],
+  "model_runs": [
+    {
+      "spec": {
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 20
+        },
+        "strength": 0.0
+      },
+      "rmse": 0.0039000557871431175
+    },
+    {
+      "spec": {
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 20
+        },
+        "strength": 0.25
+      },
+      "rmse": 0.0039037380895709187
+    },
+    {
+      "spec": {
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 20
+        },
+        "strength": 0.75
+      },
+      "rmse": 0.003922670048932872
+    },
+    {
+      "spec": {
+        "tree": {
+          "max_depth": 3,
+          "reg_lambda": 40
+        },
+        "strength": 0.0
+      },
+      "rmse": 0.00390898188382618
+    },
+    {
+      "spec": {
+        "tree": {
+          "max_depth": 3,
+          "reg_lambda": 40
+        },
+        "strength": 0.25
+      },
+      "rmse": 0.003913505443256573
+    },
+    {
+      "spec": {
+        "tree": {
+          "max_depth": 3,
+          "reg_lambda": 40
+        },
+        "strength": 0.75
+      },
+      "rmse": 0.003934142348958383
+    }
+  ],
+  "selected_model": {
+    "spec": {
+      "tree": {
+        "max_depth": 2,
+        "reg_lambda": 20
+      },
+      "strength": 0.0
+    },
+    "rmse": 0.0039000557871431175
+  },
+  "selected_risk_policy": {
+    "annual_volatility": 0,
+    "deadzone_bps": 0,
+    "gross_cap": 1.0,
+    "per_asset_cap": 0.5
+  },
+  "risk_runs": [
+    {
+      "policy": {
+        "annual_volatility": 0.04,
+        "deadzone_bps": 0,
+        "gross_cap": 1.0,
+        "per_asset_cap": 0.5
+      },
+      "mean_validation_utility": -0.008046531260536794,
+      "folds": [
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 98114.60502466882,
+          "total_return": -0.018853949753311783,
+          "annualized_arithmetic_return": -0.00887139801827513,
+          "annualized_volatility": 0.03953967412082318,
+          "sharpe_zero_cash_rate": -0.22436699885705674,
+          "max_drawdown": -0.0658977686648724,
+          "var_95_loss": 0.0037011463016994707,
+          "expected_shortfall_95_loss": 0.005291544728839884,
+          "total_cost": 4281.853769592232,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 221.4278002946799,
+          "total_marked_pnl": 2396.4587942575513,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.0133239492103843,
+          "accounting_residual": 3.5061020753346384e-09,
+          "liquidated_cash": 98114.60502466882,
+          "observations": 497,
+          "history_observations": 1497,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": -0.013561555507017814
+        },
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 101866.98782377652,
+          "total_return": 0.018669878237765225,
+          "annualized_arithmetic_return": 0.019453396337383192,
+          "annualized_volatility": 0.036303794613409164,
+          "sharpe_zero_cash_rate": 0.5358502201915248,
+          "max_drawdown": -0.03725804222408513,
+          "var_95_loss": 0.004101278495180117,
+          "expected_shortfall_95_loss": 0.005073542160093877,
+          "total_cost": 2912.8443702219834,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 143.02667994915276,
+          "total_marked_pnl": 4779.832193996717,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.018658628813338,
+          "accounting_residual": 1.7885213310364634e-09,
+          "liquidated_cash": 101866.98782377652,
+          "observations": 248,
+          "history_observations": 1745,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": 0.015499499827385403
+        },
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 95538.52407589249,
+          "total_return": -0.04461475924107505,
+          "annualized_arithmetic_return": -0.02244362481163871,
+          "annualized_volatility": 0.03480379907586366,
+          "sharpe_zero_cash_rate": -0.6448613486911923,
+          "max_drawdown": -0.07266257322543623,
+          "var_95_loss": 0.003741078101385858,
+          "expected_shortfall_95_loss": 0.004686503675943094,
+          "total_cost": 3994.11473804808,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 206.62884165534177,
+          "total_marked_pnl": -467.3611860630881,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.014750641130314,
+          "accounting_residual": 3.6602614272851497e-09,
+          "liquidated_cash": 95538.52407589249,
+          "observations": 499,
+          "history_observations": 2244,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": -0.026077538101977972
+        }
+      ]
+    },
+    {
+      "policy": {
+        "annual_volatility": 0.04,
+        "deadzone_bps": 2,
+        "gross_cap": 1.0,
+        "per_asset_cap": 0.5
+      },
+      "mean_validation_utility": -0.008548554211960527,
+      "folds": [
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 98825.29184546723,
+          "total_return": -0.011747081545327664,
+          "annualized_arithmetic_return": -0.00522172741254056,
+          "annualized_volatility": 0.03929119660219959,
+          "sharpe_zero_cash_rate": -0.132898151853391,
+          "max_drawdown": -0.055042561699474746,
+          "var_95_loss": 0.0037703032891507867,
+          "expected_shortfall_95_loss": 0.0053040780383608556,
+          "total_cost": 4349.59874268206,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 223.64928265596808,
+          "total_marked_pnl": 3174.890588145203,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.0063716920997425,
+          "accounting_residual": 4.089997673872858e-09,
+          "liquidated_cash": 98825.29184546723,
+          "observations": 497,
+          "history_observations": 1497,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": -0.009853121803838662
+        },
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 101377.40202513826,
+          "total_return": 0.013774020251382524,
+          "annualized_arithmetic_return": 0.014514457545080788,
+          "annualized_volatility": 0.03509167079826438,
+          "sharpe_zero_cash_rate": 0.41361545959215684,
+          "max_drawdown": -0.04411434491155486,
+          "var_95_loss": 0.004025065439013181,
+          "expected_shortfall_95_loss": 0.0049337473011364825,
+          "total_cost": 2755.5844172323127,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 135.11894671617324,
+          "total_marked_pnl": 4132.986442368705,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.0186586288133381,
+          "accounting_residual": 1.868556864792481e-09,
+          "liquidated_cash": 101377.40202513826,
+          "observations": 248,
+          "history_observations": 1745,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": 0.010820181466839504
+        },
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 95406.58414701503,
+          "total_return": -0.04593415852984961,
+          "annualized_arithmetic_return": -0.023173901219352564,
+          "annualized_volatility": 0.03385666394045079,
+          "sharpe_zero_cash_rate": -0.6844708994398345,
+          "max_drawdown": -0.06504869402797653,
+          "var_95_loss": 0.003572517059502281,
+          "expected_shortfall_95_loss": 0.004665741614589948,
+          "total_cost": 4332.417828269874,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 222.97086632128372,
+          "total_marked_pnl": -260.99802471882776,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.0147506411303142,
+          "accounting_residual": 3.735294740181416e-09,
+          "liquidated_cash": 95406.58414701503,
+          "observations": 499,
+          "history_observations": 2244,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": -0.026612722298882424
+        }
+      ]
+    },
+    {
+      "policy": {
+        "annual_volatility": 0.08,
+        "deadzone_bps": 0,
+        "gross_cap": 1.0,
+        "per_asset_cap": 0.5
+      },
+      "mean_validation_utility": -0.0044492256526915235,
+      "folds": [
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 98020.82295272264,
+          "total_return": -0.019791770472773695,
+          "annualized_arithmetic_return": -0.009123787434685763,
+          "annualized_volatility": 0.04505282880619371,
+          "sharpe_zero_cash_rate": -0.20251308689037203,
+          "max_drawdown": -0.07272341939646487,
+          "var_95_loss": 0.004290904401346101,
+          "expected_shortfall_95_loss": 0.006290091983564952,
+          "total_cost": 4467.897519644134,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 230.4123166689668,
+          "total_marked_pnl": 2488.7204723630093,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.0192544225824722,
+          "accounting_residual": 3.760760591831058e-09,
+          "liquidated_cash": 98020.82295272264,
+          "observations": 497,
+          "history_observations": 1497,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": -0.015213059585006357
+        },
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 102666.13449053309,
+          "total_return": 0.026661344905331008,
+          "annualized_arithmetic_return": 0.027595957371854617,
+          "annualized_volatility": 0.04149622408280147,
+          "sharpe_zero_cash_rate": 0.665023336021844,
+          "max_drawdown": -0.03856947956098866,
+          "var_95_loss": 0.004472945856985476,
+          "expected_shortfall_95_loss": 0.00584229549268737,
+          "total_cost": 3056.121132699427,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 149.6989408258675,
+          "total_marked_pnl": 5722.255623230885,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.017724074819851,
+          "accounting_residual": 1.6334524843841791e-09,
+          "liquidated_cash": 102666.13449053309,
+          "observations": 248,
+          "history_observations": 1745,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": 0.0224301475324644
+        },
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 96697.0961246989,
+          "total_return": -0.033029038753011,
+          "annualized_arithmetic_return": -0.016242661329528958,
+          "annualized_volatility": 0.037956569813422526,
+          "sharpe_zero_cash_rate": -0.42792753426799623,
+          "max_drawdown": -0.07590163877378353,
+          "var_95_loss": 0.0038756758436601355,
+          "expected_shortfall_95_loss": 0.005041930130146766,
+          "total_cost": 3845.3711546351274,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 198.05668259915223,
+          "total_marked_pnl": 542.4672793303248,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.0148326896217692,
+          "accounting_residual": 3.7052814150229096e-09,
+          "liquidated_cash": 96697.0961246989,
+          "observations": 499,
+          "history_observations": 2244,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": -0.020564764905532613
+        }
+      ]
+    },
+    {
+      "policy": {
+        "annual_volatility": 0.08,
+        "deadzone_bps": 2,
+        "gross_cap": 1.0,
+        "per_asset_cap": 0.5
+      },
+      "mean_validation_utility": -0.007443806339905899,
+      "folds": [
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 98329.24273549224,
+          "total_return": -0.016707572645077606,
+          "annualized_arithmetic_return": -0.00752264540808773,
+          "annualized_volatility": 0.04523215701177487,
+          "sharpe_zero_cash_rate": -0.16631188749476242,
+          "max_drawdown": -0.06482970757585893,
+          "var_95_loss": 0.0045492141123026015,
+          "expected_shortfall_95_loss": 0.006342313043247716,
+          "total_cost": 4872.493206333799,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 250.1708988697911,
+          "total_marked_pnl": 3201.735941822355,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.0192544225824722,
+          "accounting_residual": 3.6843630368821323e-09,
+          "liquidated_cash": 98329.24273549224,
+          "observations": 497,
+          "history_observations": 1497,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": -0.013660489491901294
+        },
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 101992.46567992691,
+          "total_return": 0.019924656799269247,
+          "annualized_arithmetic_return": 0.02085144315369354,
+          "annualized_volatility": 0.04017048484224762,
+          "sharpe_zero_cash_rate": 0.5190737237944392,
+          "max_drawdown": -0.05069136750252479,
+          "var_95_loss": 0.004759881383489725,
+          "expected_shortfall_95_loss": 0.005569602061033195,
+          "total_cost": 3062.1881543111067,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 149.50848714216295,
+          "total_marked_pnl": 5054.653834236287,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.0177240748198513,
+          "accounting_residual": 1.7334969015792012e-09,
+          "liquidated_cash": 101992.46567992691,
+          "observations": 248,
+          "history_observations": 1745,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": 0.016010439596309805
+        },
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 95902.91726164948,
+          "total_return": -0.040970827383505215,
+          "annualized_arithmetic_return": -0.020416670265128105,
+          "annualized_volatility": 0.037703664096911095,
+          "sharpe_zero_cash_rate": -0.5415036112312692,
+          "max_drawdown": -0.07193913049724032,
+          "var_95_loss": 0.003885273645992915,
+          "expected_shortfall_95_loss": 0.0051399116398221055,
+          "total_cost": 4612.350393244549,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 237.15606312960625,
+          "total_marked_pnl": 515.2676548897064,
+          "max_posttrade_gross": 1.0000000000000002,
+          "max_posttrade_asset": 0.5000000000000001,
+          "max_pretrade_gross": 1.0148326896217696,
+          "accounting_residual": 4.319190338719636e-09,
+          "liquidated_cash": 95902.91726164948,
+          "observations": 499,
+          "history_observations": 2244,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": -0.02468136912412621
+        }
+      ]
+    },
+    {
+      "policy": {
+        "annual_volatility": 0,
+        "deadzone_bps": 0,
+        "gross_cap": 1.0,
+        "per_asset_cap": 0.5
+      },
+      "mean_validation_utility": 0.0,
+      "folds": [
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 100000.0,
+          "total_return": 0.0,
+          "annualized_arithmetic_return": 0.0,
+          "annualized_volatility": 0.0,
+          "sharpe_zero_cash_rate": null,
+          "max_drawdown": 0.0,
+          "var_95_loss": 0.0,
+          "expected_shortfall_95_loss": 0.0,
+          "total_cost": 0.0,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 0.0,
+          "total_marked_pnl": 0.0,
+          "max_posttrade_gross": 0.0,
+          "max_posttrade_asset": 0.0,
+          "max_pretrade_gross": 0.0,
+          "accounting_residual": 0.0,
+          "liquidated_cash": 100000.0,
+          "observations": 497,
+          "history_observations": 1497,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": 0.0
+        },
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 100000.0,
+          "total_return": 0.0,
+          "annualized_arithmetic_return": 0.0,
+          "annualized_volatility": 0.0,
+          "sharpe_zero_cash_rate": null,
+          "max_drawdown": 0.0,
+          "var_95_loss": 0.0,
+          "expected_shortfall_95_loss": 0.0,
+          "total_cost": 0.0,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 0.0,
+          "total_marked_pnl": 0.0,
+          "max_posttrade_gross": 0.0,
+          "max_posttrade_asset": 0.0,
+          "max_pretrade_gross": 0.0,
+          "accounting_residual": 0.0,
+          "liquidated_cash": 100000.0,
+          "observations": 248,
+          "history_observations": 1745,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": 0.0
+        },
+        {
+          "reference_only": true,
+          "execution_delay_observations": 1,
+          "final_liquidation": true,
+          "initial_cash": 100000.0,
+          "final_nav": 100000.0,
+          "total_return": 0.0,
+          "annualized_arithmetic_return": 0.0,
+          "annualized_volatility": 0.0,
+          "sharpe_zero_cash_rate": null,
+          "max_drawdown": 0.0,
+          "var_95_loss": 0.0,
+          "expected_shortfall_95_loss": 0.0,
+          "total_cost": 0.0,
+          "cost_bps_per_turnover": 2.0,
+          "total_turnover": 0.0,
+          "total_marked_pnl": 0.0,
+          "max_posttrade_gross": 0.0,
+          "max_posttrade_asset": 0.0,
+          "max_pretrade_gross": 0.0,
+          "accounting_residual": 0.0,
+          "liquidated_cash": 100000.0,
+          "observations": 499,
+          "history_observations": 2244,
+          "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted.",
+          "utility": 0.0
+        }
+      ]
+    }
+  ],
+  "folds": [
+    {
+      "fold": 0,
+      "start": "2021-01-01",
+      "end": "2022-12-31",
+      "assets": {
+        "FXEURCAD": {
+          "training_rows": 938,
+          "validation_rows": 495,
+          "last_training_label": "2020-12-31 00:00:00+00:00",
+          "first_validation_decision": "2021-01-04 00:00:00+00:00",
+          "bridge_rows": 2
+        },
+        "FXGBPCAD": {
+          "training_rows": 938,
+          "validation_rows": 495,
+          "last_training_label": "2020-12-31 00:00:00+00:00",
+          "first_validation_decision": "2021-01-04 00:00:00+00:00",
+          "bridge_rows": 2
+        },
+        "FXAUDCAD": {
+          "training_rows": 938,
+          "validation_rows": 495,
+          "last_training_label": "2020-12-31 00:00:00+00:00",
+          "first_validation_decision": "2021-01-04 00:00:00+00:00",
+          "bridge_rows": 2
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "assets": {
+        "FXEURCAD": {
+          "training_rows": 1435,
+          "validation_rows": 246,
+          "last_training_label": "2022-12-30 00:00:00+00:00",
+          "first_validation_decision": "2023-01-03 00:00:00+00:00",
+          "bridge_rows": 2
+        },
+        "FXGBPCAD": {
+          "training_rows": 1435,
+          "validation_rows": 246,
+          "last_training_label": "2022-12-30 00:00:00+00:00",
+          "first_validation_decision": "2023-01-03 00:00:00+00:00",
+          "bridge_rows": 2
+        },
+        "FXAUDCAD": {
+          "training_rows": 1435,
+          "validation_rows": 246,
+          "last_training_label": "2022-12-30 00:00:00+00:00",
+          "first_validation_decision": "2023-01-03 00:00:00+00:00",
+          "bridge_rows": 2
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "start": "2024-01-01",
+      "end": "2025-12-31",
+      "assets": {
+        "FXEURCAD": {
+          "training_rows": 1683,
+          "validation_rows": 497,
+          "last_training_label": "2023-12-29 00:00:00+00:00",
+          "first_validation_decision": "2024-01-02 00:00:00+00:00",
+          "bridge_rows": 2
+        },
+        "FXGBPCAD": {
+          "training_rows": 1683,
+          "validation_rows": 497,
+          "last_training_label": "2023-12-29 00:00:00+00:00",
+          "first_validation_decision": "2024-01-02 00:00:00+00:00",
+          "bridge_rows": 2
+        },
+        "FXAUDCAD": {
+          "training_rows": 1683,
+          "validation_rows": 497,
+          "last_training_label": "2023-12-29 00:00:00+00:00",
+          "first_validation_decision": "2024-01-02 00:00:00+00:00",
+          "bridge_rows": 2
+        }
+      }
+    }
+  ],
+  "validation_forecasts": {
+    "FXEURCAD": {
+      "rows": 1238,
+      "rmse": 0.003696499069157478,
+      "global_rmse": 0.003696499069157478,
+      "zero_rmse": 0.0036292246811454438,
+      "mean_execution_state_probability": [
+        0.6793787217262715,
+        0.3206212782737286
+      ],
+      "mean_regime_entropy": 0.15256831323008666,
+      "mean_predicted_state_daily_volatility": 0.0037231411036895783
+    },
+    "FXGBPCAD": {
+      "rows": 1238,
+      "rmse": 0.003943766144444938,
+      "global_rmse": 0.003943766144444938,
+      "zero_rmse": 0.003918196278027959,
+      "mean_execution_state_probability": [
+        0.5081176791543907,
+        0.4918823208456093
+      ],
+      "mean_regime_entropy": 0.14036167816340703,
+      "mean_predicted_state_daily_volatility": 0.004064911592636476
+    },
+    "FXAUDCAD": {
+      "rows": 1238,
+      "rmse": 0.004051408231483636,
+      "global_rmse": 0.004051408231483636,
+      "zero_rmse": 0.00402755495481788,
+      "mean_execution_state_probability": [
+        0.7762491354644394,
+        0.2237508645355607
+      ],
+      "mean_regime_entropy": 0.1522590056335099,
+      "mean_predicted_state_daily_volatility": 0.003949478997146689
+    },
+    "pooled": {
+      "rows": 3714,
+      "rmse": 0.0039000557871431175,
+      "global_rmse": 0.0039000557871431175,
+      "zero_rmse": 0.003861982771127868
+    }
+  },
+  "new2026values_used": false,
+  "runtime_seconds": 97.00168519999715,
+  "disclosure": "Retrospective development only; all model/risk policies fixed before new three-asset 2026 retrieval; no profitable strategy is guaranteed"
+}

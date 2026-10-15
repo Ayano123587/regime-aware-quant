@@ -1,0 +1,16 @@
+{
+  "url": "https://www.bankofcanada.ca/valet/observations/FXEURCAD,FXGBPCAD,FXAUDCAD/json?start_date=2017-01-01&end_date=2025-12-31",
+  "sha256": "58c8d02de064898f4387d5727972083d5ea3850aa94009da200f07fbad97df5e",
+  "assets": [
+    "FXEURCAD",
+    "FXGBPCAD",
+    "FXAUDCAD"
+  ],
+  "rows": 2244,
+  "first": "2017-01-03 00:00:00+00:00",
+  "last": "2025-12-31 00:00:00+00:00",
+  "retrieved_at_utc": "2026-10-15T20:09:46.213010+00:00",
+  "source": "Bank of Canada, Valet API; no endorsement",
+  "terms": "https://www.bankofcanada.ca/terms/",
+  "vintage_limitation": "Current API snapshot, not historical as-published vintages"
+}

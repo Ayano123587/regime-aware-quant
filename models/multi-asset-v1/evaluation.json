@@ -1,0 +1,236 @@
+{
+  "study": "multi-asset-v1",
+  "assets": [
+    "FXEURCAD",
+    "FXGBPCAD",
+    "FXAUDCAD"
+  ],
+  "plan_sha256": "be6fdc25562edb6ecbb598f726b77e8567535645363bb10edc32927786981239",
+  "selection_sha256": "f6b51d8ee5e562b7473f3122b6843b1da3500ab41740a46a091fb82492b53684",
+  "selected_model": {
+    "tree": {
+      "max_depth": 2,
+      "reg_lambda": 20
+    },
+    "strength": 0.0
+  },
+  "selected_risk_policy": {
+    "annual_volatility": 0,
+    "deadzone_bps": 0,
+    "gross_cap": 1.0,
+    "per_asset_cap": 0.5
+  },
+  "new_provenance": {
+    "url": "https://www.bankofcanada.ca/valet/observations/FXEURCAD,FXGBPCAD,FXAUDCAD/json?start_date=2026-01-01&end_date=2026-10-14",
+    "sha256": "c64e0805e00a265135f122bf1df9c74091918e2f8a3567e821cbf3c96935b7e4",
+    "assets": [
+      "FXEURCAD",
+      "FXGBPCAD",
+      "FXAUDCAD"
+    ],
+    "rows": 196,
+    "first": "2026-01-02 00:00:00+00:00",
+    "last": "2026-10-14 00:00:00+00:00",
+    "retrieved_at_utc": "2026-10-15T20:22:02.413631+00:00",
+    "source": "Bank of Canada, Valet API; no endorsement",
+    "terms": "https://www.bankofcanada.ca/terms/",
+    "vintage_limitation": "Current API snapshot, not historical as-published vintages"
+  },
+  "test_decisions_first": "2026-01-02 00:00:00+00:00",
+  "test_decisions_last": "2026-10-09 00:00:00+00:00",
+  "last_matured_label": "2026-10-14 00:00:00+00:00",
+  "forecast_scores": {
+    "FXEURCAD": {
+      "rows": 194,
+      "rmse": 0.0024326632864716626,
+      "global_rmse": 0.0024326632864716626,
+      "zero_rmse": 0.002399979656800712,
+      "mean_execution_state_probability": [
+        0.9802193868591809,
+        0.019780613140818942
+      ],
+      "mean_regime_entropy": 0.09575721053412928,
+      "mean_predicted_state_daily_volatility": 0.002922030007976446
+    },
+    "FXGBPCAD": {
+      "rows": 194,
+      "rmse": 0.0026967296082206853,
+      "global_rmse": 0.0026967296082206853,
+      "zero_rmse": 0.0026834217010498758,
+      "mean_execution_state_probability": [
+        0.017038581242101968,
+        0.9829614187578981
+      ],
+      "mean_regime_entropy": 0.08619993814688676,
+      "mean_predicted_state_daily_volatility": 0.0032327604884709424
+    },
+    "FXAUDCAD": {
+      "rows": 194,
+      "rmse": 0.0036852070271968167,
+      "global_rmse": 0.0036852070271968167,
+      "zero_rmse": 0.0036301724979017434,
+      "mean_execution_state_probability": [
+        0.859621859008772,
+        0.14037814099122808
+      ],
+      "mean_regime_entropy": 0.09612886740526852,
+      "mean_predicted_state_daily_volatility": 0.0037154137797519465
+    },
+    "pooled": {
+      "rows": 582,
+      "rmse": 0.002987248013278108,
+      "global_rmse": 0.002987248013278108,
+      "zero_rmse": 0.002951768212628088
+    }
+  },
+  "checkpoint_context_rows": 2244,
+  "recursive_feature_context": "Full historical feature-only price context preserves exact EWM initialization",
+  "cost_turnover_sensitivity": [
+    {
+      "reference_only": true,
+      "execution_delay_observations": 1,
+      "final_liquidation": true,
+      "initial_cash": 100000.0,
+      "final_nav": 100000.0,
+      "total_return": 0.0,
+      "annualized_arithmetic_return": 0.0,
+      "annualized_volatility": 0.0,
+      "sharpe_zero_cash_rate": null,
+      "max_drawdown": 0.0,
+      "var_95_loss": 0.0,
+      "expected_shortfall_95_loss": 0.0,
+      "total_cost": 0.0,
+      "cost_bps_per_turnover": 0,
+      "total_turnover": 0.0,
+      "total_marked_pnl": 0.0,
+      "max_posttrade_gross": 0.0,
+      "max_posttrade_asset": 0.0,
+      "max_pretrade_gross": 0.0,
+      "accounting_residual": 0.0,
+      "liquidated_cash": 100000.0,
+      "observations": 196,
+      "history_observations": 2440,
+      "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted."
+    },
+    {
+      "reference_only": true,
+      "execution_delay_observations": 1,
+      "final_liquidation": true,
+      "initial_cash": 100000.0,
+      "final_nav": 100000.0,
+      "total_return": 0.0,
+      "annualized_arithmetic_return": 0.0,
+      "annualized_volatility": 0.0,
+      "sharpe_zero_cash_rate": null,
+      "max_drawdown": 0.0,
+      "var_95_loss": 0.0,
+      "expected_shortfall_95_loss": 0.0,
+      "total_cost": 0.0,
+      "cost_bps_per_turnover": 2,
+      "total_turnover": 0.0,
+      "total_marked_pnl": 0.0,
+      "max_posttrade_gross": 0.0,
+      "max_posttrade_asset": 0.0,
+      "max_pretrade_gross": 0.0,
+      "accounting_residual": 0.0,
+      "liquidated_cash": 100000.0,
+      "observations": 196,
+      "history_observations": 2440,
+      "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted."
+    },
+    {
+      "reference_only": true,
+      "execution_delay_observations": 1,
+      "final_liquidation": true,
+      "initial_cash": 100000.0,
+      "final_nav": 100000.0,
+      "total_return": 0.0,
+      "annualized_arithmetic_return": 0.0,
+      "annualized_volatility": 0.0,
+      "sharpe_zero_cash_rate": null,
+      "max_drawdown": 0.0,
+      "var_95_loss": 0.0,
+      "expected_shortfall_95_loss": 0.0,
+      "total_cost": 0.0,
+      "cost_bps_per_turnover": 5,
+      "total_turnover": 0.0,
+      "total_marked_pnl": 0.0,
+      "max_posttrade_gross": 0.0,
+      "max_posttrade_asset": 0.0,
+      "max_pretrade_gross": 0.0,
+      "accounting_residual": 0.0,
+      "liquidated_cash": 100000.0,
+      "observations": 196,
+      "history_observations": 2440,
+      "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted."
+    },
+    {
+      "reference_only": true,
+      "execution_delay_observations": 1,
+      "final_liquidation": true,
+      "initial_cash": 100000.0,
+      "final_nav": 100000.0,
+      "total_return": 0.0,
+      "annualized_arithmetic_return": 0.0,
+      "annualized_volatility": 0.0,
+      "sharpe_zero_cash_rate": null,
+      "max_drawdown": 0.0,
+      "var_95_loss": 0.0,
+      "expected_shortfall_95_loss": 0.0,
+      "total_cost": 0.0,
+      "cost_bps_per_turnover": 10,
+      "total_turnover": 0.0,
+      "total_marked_pnl": 0.0,
+      "max_posttrade_gross": 0.0,
+      "max_posttrade_asset": 0.0,
+      "max_pretrade_gross": 0.0,
+      "accounting_residual": 0.0,
+      "liquidated_cash": 100000.0,
+      "observations": 196,
+      "history_observations": 2440,
+      "limits": "Caps hold after each rebalance, not between observations. Reference levels are non-executable; financing/spread/impact omitted."
+    }
+  ],
+  "delayed_residual_monitor": {
+    "labels_arrive_after_observations": 2,
+    "adaptive_trades_or_refitting": false,
+    "assets": {
+      "FXEURCAD": {
+        "matured_labels": 194,
+        "alerts": 3,
+        "mean_standardized_residual": -0.024503538224380547
+      },
+      "FXGBPCAD": {
+        "matured_labels": 194,
+        "alerts": 2,
+        "mean_standardized_residual": 0.04492725555448655
+      },
+      "FXAUDCAD": {
+        "matured_labels": 194,
+        "alerts": 3,
+        "mean_standardized_residual": 0.19906665827417636
+      }
+    },
+    "pending_unmatured": 0,
+    "interpretation": "Residual change alarms are diagnostic, not verified market regime changes"
+  },
+  "local_prediction_sha256": "4750b4d1ab5ff49114ad6b41f6d14fa3c0818c0b593280ca3a5c84723055a2d6",
+  "local_ledger_sha256": "0c40f202dfb3d6d1cce67fbd90fa653e2da0cb8a916b8fafbd599a2235bb6ee1",
+  "environment": {
+    "python": "3.14.2",
+    "numpy": "2.4.2",
+    "pandas": "3.0.0",
+    "scipy": "1.17.0",
+    "scikit-learn": "1.8.0",
+    "xgboost": "3.4.1"
+  },
+  "limitations": [
+    "Indicative averages are non-executable; no brokerage actions or investment recommendation",
+    "One-observation delayed reference accounting is still not actual after-publication execution",
+    "No historical vintages, financing, executable spreads, intraday limits or market impact",
+    "Peer features lag one common observation; synchronous release/calendar assumptions remain",
+    "All pairs share CAD exposure; one partial year, one seed, no proven economic regime labels",
+    "USD/CAD2026 previously observed and explicitly excluded from new-test claims",
+    "Residual alarms do not prove drift and never adapt the heldout model or positions"
+  ]
+}

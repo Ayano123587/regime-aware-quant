@@ -1,0 +1,18 @@
+{
+  "checkpoint_sha256": "aa9163c246731b0cecb55836761be0ea3227126663b57cc6da6809aeb8c95cb8",
+  "recorded_predictions_sha256": "4750b4d1ab5ff49114ad6b41f6d14fa3c0818c0b593280ca3a5c84723055a2d6",
+  "cli_predictions_sha256": "c533828f3ce616436e2dd4bb663712fc16b051f70235cd1bb5254919977ad5c0",
+  "recorded_labeled_rows_compared": 582,
+  "cli_rows": 588,
+  "last_two_unlabeled_rows_per_asset_retained_for_live_forecasts": true,
+  "maximum_absolute_difference": {
+    "prediction": 0.0,
+    "global_prediction": 0.0,
+    "regime_probability_0": 0.0,
+    "regime_probability_1": 0.0,
+    "predicted_state_volatility": 0.0
+  },
+  "actual_saved_checkpoint_prefix_invariance": true,
+  "complete_recursive_context_rows": 2244,
+  "refitting_or_policy_changes": false
+}

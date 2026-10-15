@@ -1,0 +1,9 @@
+{"fold": 0, "asset": "FXEURCAD", "training_rows": 938, "validation_rows": 495, "elapsed_seconds": 9.17836210000678}
+{"fold": 0, "asset": "FXGBPCAD", "training_rows": 938, "validation_rows": 495, "elapsed_seconds": 15.890962100005709}
+{"fold": 0, "asset": "FXAUDCAD", "training_rows": 938, "validation_rows": 495, "elapsed_seconds": 22.31232050000108}
+{"fold": 1, "asset": "FXEURCAD", "training_rows": 1435, "validation_rows": 246, "elapsed_seconds": 30.667228600010276}
+{"fold": 1, "asset": "FXGBPCAD", "training_rows": 1435, "validation_rows": 246, "elapsed_seconds": 45.58123460000206}
+{"fold": 1, "asset": "FXAUDCAD", "training_rows": 1435, "validation_rows": 246, "elapsed_seconds": 54.766650400008075}
+{"fold": 2, "asset": "FXEURCAD", "training_rows": 1683, "validation_rows": 497, "elapsed_seconds": 70.41805870000098}
+{"fold": 2, "asset": "FXGBPCAD", "training_rows": 1683, "validation_rows": 497, "elapsed_seconds": 83.29372970000259}
+{"fold": 2, "asset": "FXAUDCAD", "training_rows": 1683, "validation_rows": 497, "elapsed_seconds": 90.50069640000584}

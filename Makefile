@@ -11,3 +11,9 @@ test:
 	python -m pytest -q
 plot:
 	python -m src.visualization.visualize
+advanced-search:
+	python -m src.models.advanced search
+advanced-test:
+	python -m src.models.advanced test
+advanced-report:
+	python -m src.models.advanced report
