@@ -1,0 +1,230 @@
+{
+  "plan": {
+    "study": "regularized-uncertainty-v2",
+    "assets": [
+      "FXEURCAD",
+      "FXGBPCAD",
+      "FXAUDCAD"
+    ],
+    "validation_years": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "candidates": [
+      {
+        "kind": "zero"
+      },
+      {
+        "kind": "ridge",
+        "alpha": 3000
+      },
+      {
+        "kind": "ridge",
+        "alpha": 10000
+      },
+      {
+        "kind": "ridge",
+        "alpha": 30000
+      },
+      {
+        "kind": "ridge",
+        "alpha": 100000
+      },
+      {
+        "kind": "ridge",
+        "alpha": 1000000
+      }
+    ],
+    "selection": "pooled chronological validation RMSE; zero is eligible; no 2025/2026 selection",
+    "final_training_label_end": "2024-12-31",
+    "calibration_year": 2025,
+    "test_year": 2026,
+    "interval_alpha": 0.1,
+    "intervals": "per-asset split calibration of absolute residuals, constant-width and causal EWM-volatility-normalized alternatives; report both without selecting on test",
+    "disclosure": "2026 observations and earlier scores have already been viewed. This is retrospective improvement, not fresh independent evidence. Chronological dependence and nonstationarity prevent a distribution-free coverage guarantee.",
+    "cpu_budget_minutes": 10,
+    "reason": "Validation selected strongest original regularization; extend range using validation only. Prior 2026 results are observed and not used for candidate selection."
+  },
+  "candidates": [
+    {
+      "spec": {
+        "kind": "zero"
+      },
+      "pooled_validation_rmse": 0.003913798891652039,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035097725527324895
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004873579787696267
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004001421373076264
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.00304156960375828
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 3000
+      },
+      "pooled_validation_rmse": 0.003914343806244859,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0034993153801941624
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.0048671073116466745
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004006427758768166
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.0030600478558583813
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 10000
+      },
+      "pooled_validation_rmse": 0.0039109948384311215,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.003502505263243202
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.0048669088902775414
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004000885649674437
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.0030468482844606495
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 30000
+      },
+      "pooled_validation_rmse": 0.003911730586804736,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035062482208555712
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004870015895931267
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004000273649888321
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.0030421886008370133
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 100000
+      },
+      "pooled_validation_rmse": 0.003912946313466971,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035085311755470596
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004872273353669223
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004000868477460856
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.003041427979759741
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 1000000
+      },
+      "pooled_validation_rmse": 0.0039137015142707236,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.003509639747479794
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004873437554866483
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004001355031706214
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.0030415361893340533
+        }
+      ]
+    }
+  ],
+  "selected": {
+    "kind": "ridge",
+    "alpha": 10000
+  },
+  "calibration_or_test_loaded": false
+}

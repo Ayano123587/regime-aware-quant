@@ -1,0 +1,48 @@
+{
+  "study": "regularized-uncertainty-v2",
+  "assets": [
+    "FXEURCAD",
+    "FXGBPCAD",
+    "FXAUDCAD"
+  ],
+  "validation_years": [
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "candidates": [
+    {
+      "kind": "zero"
+    },
+    {
+      "kind": "ridge",
+      "alpha": 3000
+    },
+    {
+      "kind": "ridge",
+      "alpha": 10000
+    },
+    {
+      "kind": "ridge",
+      "alpha": 30000
+    },
+    {
+      "kind": "ridge",
+      "alpha": 100000
+    },
+    {
+      "kind": "ridge",
+      "alpha": 1000000
+    }
+  ],
+  "selection": "pooled chronological validation RMSE; zero is eligible; no 2025/2026 selection",
+  "final_training_label_end": "2024-12-31",
+  "calibration_year": 2025,
+  "test_year": 2026,
+  "interval_alpha": 0.1,
+  "intervals": "per-asset split calibration of absolute residuals, constant-width and causal EWM-volatility-normalized alternatives; report both without selecting on test",
+  "disclosure": "2026 observations and earlier scores have already been viewed. This is retrospective improvement, not fresh independent evidence. Chronological dependence and nonstationarity prevent a distribution-free coverage guarantee.",
+  "cpu_budget_minutes": 10,
+  "reason": "Validation selected strongest original regularization; extend range using validation only. Prior 2026 results are observed and not used for candidate selection."
+}

@@ -1,0 +1,144 @@
+{
+  "quarterly": [
+    {
+      "asset": "FXAUDCAD",
+      "quarter": "2026-Q1",
+      "rows": 62,
+      "rmse": 0.004256790889511952,
+      "zero_rmse": 0.004225970109643701,
+      "nominal_90_coverage": 0.8387096774193549,
+      "mean_interval_width": 0.011927743282608576
+    },
+    {
+      "asset": "FXAUDCAD",
+      "quarter": "2026-Q2",
+      "rows": 63,
+      "rmse": 0.0035984929461572147,
+      "zero_rmse": 0.003602246692773493,
+      "nominal_90_coverage": 0.8888888888888888,
+      "mean_interval_width": 0.011869613319961374
+    },
+    {
+      "asset": "FXAUDCAD",
+      "quarter": "2026-Q3",
+      "rows": 62,
+      "rmse": 0.003045949511139282,
+      "zero_rmse": 0.003060900907088168,
+      "nominal_90_coverage": 0.8387096774193549,
+      "mean_interval_width": 0.009725006512375832
+    },
+    {
+      "asset": "FXAUDCAD",
+      "quarter": "2026-Q4",
+      "rows": 7,
+      "rmse": 0.0027060937632727277,
+      "zero_rmse": 0.0026973532417767115,
+      "nominal_90_coverage": 0.8571428571428571,
+      "mean_interval_width": 0.009662631334060829
+    },
+    {
+      "asset": "FXEURCAD",
+      "quarter": "2026-Q1",
+      "rows": 62,
+      "rmse": 0.0028723947011293155,
+      "zero_rmse": 0.002875543427583189,
+      "nominal_90_coverage": 0.8870967741935484,
+      "mean_interval_width": 0.008012495210932252
+    },
+    {
+      "asset": "FXEURCAD",
+      "quarter": "2026-Q2",
+      "rows": 63,
+      "rmse": 0.0022222649889543527,
+      "zero_rmse": 0.0022178543873128047,
+      "nominal_90_coverage": 0.9047619047619048,
+      "mean_interval_width": 0.007899591336590427
+    },
+    {
+      "asset": "FXEURCAD",
+      "quarter": "2026-Q3",
+      "rows": 62,
+      "rmse": 0.0019316564146465405,
+      "zero_rmse": 0.0019435420106881797,
+      "nominal_90_coverage": 0.8870967741935484,
+      "mean_interval_width": 0.006357989227269368
+    },
+    {
+      "asset": "FXEURCAD",
+      "quarter": "2026-Q4",
+      "rows": 7,
+      "rmse": 0.0029517762589287865,
+      "zero_rmse": 0.0029440786351030176,
+      "nominal_90_coverage": 0.5714285714285714,
+      "mean_interval_width": 0.0068606284907561715
+    },
+    {
+      "asset": "FXGBPCAD",
+      "quarter": "2026-Q1",
+      "rows": 62,
+      "rmse": 0.002874092104724935,
+      "zero_rmse": 0.002863519565600589,
+      "nominal_90_coverage": 0.9032258064516129,
+      "mean_interval_width": 0.010021484029129573
+    },
+    {
+      "asset": "FXGBPCAD",
+      "quarter": "2026-Q2",
+      "rows": 63,
+      "rmse": 0.0028988756617413227,
+      "zero_rmse": 0.0028682678650833186,
+      "nominal_90_coverage": 0.8888888888888888,
+      "mean_interval_width": 0.010540009070507608
+    },
+    {
+      "asset": "FXGBPCAD",
+      "quarter": "2026-Q3",
+      "rows": 62,
+      "rmse": 0.0023173216856262513,
+      "zero_rmse": 0.002330082261315617,
+      "nominal_90_coverage": 0.9193548387096774,
+      "mean_interval_width": 0.00872984342697817
+    },
+    {
+      "asset": "FXGBPCAD",
+      "quarter": "2026-Q4",
+      "rows": 7,
+      "rmse": 0.0021551726111025626,
+      "zero_rmse": 0.0021924436617816448,
+      "nominal_90_coverage": 1.0,
+      "mean_interval_width": 0.008191213637235942
+    }
+  ],
+  "new_minus_zero": {
+    "mean_mse_difference": 2.890148681244965e-08,
+    "percentile_95_interval": [
+      -4.3188492305050426e-08,
+      1.1097918370453497e-07
+    ],
+    "block_observations": 10,
+    "replicates": 1000,
+    "seed": 42,
+    "excludes_zero": false,
+    "interpretation": "Negative favors the new predictor; descriptive observed-period uncertainty, not a prospective guarantee."
+  },
+  "selection_or_trading_changes": false,
+  "limitations": [
+    "Both periods and earlier test scores have already been observed.",
+    "Assets share CAD exposure; date blocks retain contemporaneous correlation.",
+    "A ten-observation circular bootstrap is a descriptive assumption, not guaranteed inference.",
+    "Small quarterly cohorts have unstable coverage. These diagnostics do not retune intervals."
+  ],
+  "new_minus_previous_xgboost": {
+    "mean_mse_difference": -1.8181362493989508e-07,
+    "percentile_95_interval": [
+      -3.4065020261697304e-07,
+      -5.9034072273418875e-08
+    ],
+    "block_observations": 10,
+    "replicates": 1000,
+    "seed": 42,
+    "excludes_zero": true,
+    "interpretation": "Negative favors the new predictor; descriptive observed-period uncertainty, not a prospective guarantee."
+  },
+  "training_period_confounder": "New point model trained through 2024; previous XGBoost through 2025. Difference is between complete procedures, not a controlled architecture-only effect."
+}

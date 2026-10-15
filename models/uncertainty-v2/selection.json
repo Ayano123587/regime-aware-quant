@@ -1,0 +1,168 @@
+{
+  "plan_sha256": "f6e34962ebf86c4b63ac56c7cbba6e614f16916bb042f3d0bd2da562faeccddc",
+  "candidates": [
+    {
+      "spec": {
+        "kind": "zero"
+      },
+      "pooled_validation_rmse": 0.003913798891652039,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035097725527324895
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004873579787696267
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004001421373076264
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.00304156960375828
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 100
+      },
+      "pooled_validation_rmse": 0.003943993951416308,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035075722873117465
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004909702345806353
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004029622093325149
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.0031041269251509047
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 1000
+      },
+      "pooled_validation_rmse": 0.003923046790146832,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035004111255965272
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004876685543301225
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004015644586789652
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.00307600325207123
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 10000
+      },
+      "pooled_validation_rmse": 0.0039109948384311215,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.003502505263243202
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.0048669088902775414
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004000885649674437
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.0030468482844606495
+        }
+      ]
+    }
+  ],
+  "selected": {
+    "kind": "ridge",
+    "alpha": 10000
+  },
+  "calibration": {
+    "FXEURCAD": {
+      "rows": 247,
+      "last_training_label": "2024-12-31 00:00:00+00:00",
+      "first_calibration_decision": "2025-01-02 00:00:00+00:00",
+      "last_calibration_label": "2025-12-31 00:00:00+00:00",
+      "absolute_quantile": 0.005093485980943243,
+      "normalized_quantile": 1.6024530402164623
+    },
+    "FXGBPCAD": {
+      "rows": 247,
+      "last_training_label": "2024-12-31 00:00:00+00:00",
+      "first_calibration_decision": "2025-01-02 00:00:00+00:00",
+      "last_calibration_label": "2025-12-31 00:00:00+00:00",
+      "absolute_quantile": 0.006245815806711628,
+      "normalized_quantile": 1.7967896957344307
+    },
+    "FXAUDCAD": {
+      "rows": 247,
+      "last_training_label": "2024-12-31 00:00:00+00:00",
+      "first_calibration_decision": "2025-01-02 00:00:00+00:00",
+      "last_calibration_label": "2025-12-31 00:00:00+00:00",
+      "absolute_quantile": 0.005210911756317415,
+      "normalized_quantile": 1.5654150593834533
+    }
+  },
+  "development_provenance": {
+    "url": "https://www.bankofcanada.ca/valet/observations/FXEURCAD,FXGBPCAD,FXAUDCAD/json?start_date=2017-01-01&end_date=2025-12-31",
+    "sha256": "58c8d02de064898f4387d5727972083d5ea3850aa94009da200f07fbad97df5e",
+    "assets": [
+      "FXEURCAD",
+      "FXGBPCAD",
+      "FXAUDCAD"
+    ],
+    "rows": 2244,
+    "first": "2017-01-03 00:00:00+00:00",
+    "last": "2025-12-31 00:00:00+00:00",
+    "retrieved_at_utc": "2026-10-15T20:09:46.213010+00:00",
+    "source": "Bank of Canada, Valet API; no endorsement",
+    "terms": "https://www.bankofcanada.ca/terms/",
+    "vintage_limitation": "Current API snapshot, not historical as-published vintages"
+  },
+  "test_used_for_selection": false,
+  "disclosure": "2026 observations and earlier scores have already been viewed. This is retrospective improvement, not fresh independent evidence. Chronological dependence and nonstationarity prevent a distribution-free coverage guarantee."
+}

@@ -1,0 +1,101 @@
+{
+  "study": "regularized-uncertainty-v2",
+  "selection_sha256": "64a15f6dc23530c91339e8634ded16175f4ed44f0e649e53907d35dd546e6bb6",
+  "implementation_sha256": "c2017dc29d94810704169e60cae9c8b477b9183b07a58233bda274c3ac048fc7",
+  "environment": {
+    "python": "3.14.2",
+    "numpy": "2.4.2",
+    "pandas": "3.0.0",
+    "scikit-learn": "1.8.0",
+    "joblib": "1.5.2"
+  },
+  "selected": {
+    "kind": "ridge",
+    "alpha": 10000
+  },
+  "test_provenance": {
+    "url": "https://www.bankofcanada.ca/valet/observations/FXEURCAD,FXGBPCAD,FXAUDCAD/json?start_date=2026-01-01&end_date=2026-10-14",
+    "sha256": "c64e0805e00a265135f122bf1df9c74091918e2f8a3567e821cbf3c96935b7e4",
+    "assets": [
+      "FXEURCAD",
+      "FXGBPCAD",
+      "FXAUDCAD"
+    ],
+    "rows": 196,
+    "first": "2026-01-02 00:00:00+00:00",
+    "last": "2026-10-14 00:00:00+00:00",
+    "retrieved_at_utc": "2026-10-15T20:22:02.413631+00:00",
+    "source": "Bank of Canada, Valet API; no endorsement",
+    "terms": "https://www.bankofcanada.ca/terms/",
+    "vintage_limitation": "Current API snapshot, not historical as-published vintages"
+  },
+  "per_asset": {
+    "FXEURCAD": {
+      "volatility_normalized": {
+        "rows": 194,
+        "rmse": 0.0023973726303058627,
+        "coverage": 0.8814432989690721,
+        "mean_width": 0.007405508705201073,
+        "mean_interval_score": 0.01059810229894091
+      },
+      "constant": {
+        "rows": 194,
+        "rmse": 0.0023973726303058627,
+        "coverage": 0.9639175257731959,
+        "mean_width": 0.010186971961886488,
+        "mean_interval_score": 0.01115697991462136
+      },
+      "zero_rmse": 0.002399979656800712
+    },
+    "FXGBPCAD": {
+      "volatility_normalized": {
+        "rows": 194,
+        "rmse": 0.0026930767605710835,
+        "coverage": 0.9072164948453608,
+        "mean_width": 0.009711037985470771,
+        "mean_interval_score": 0.012163103843977131
+      },
+      "constant": {
+        "rows": 194,
+        "rmse": 0.0026930767605710835,
+        "coverage": 0.979381443298969,
+        "mean_width": 0.012491631613423256,
+        "mean_interval_score": 0.013111100534243927
+      },
+      "zero_rmse": 0.0026834217010498758
+    },
+    "FXAUDCAD": {
+      "volatility_normalized": {
+        "rows": 194,
+        "rmse": 0.0036366816243403187,
+        "coverage": 0.8556701030927835,
+        "mean_width": 0.011123167761778584,
+        "mean_interval_score": 0.016670379055322235
+      },
+      "constant": {
+        "rows": 194,
+        "rmse": 0.0036366816243403187,
+        "coverage": 0.8505154639175257,
+        "mean_width": 0.01042182351263483,
+        "mean_interval_score": 0.015856203438723945
+      },
+      "zero_rmse": 0.0036301724979017434
+    }
+  },
+  "pooled_rmse": 0.0029566597822363798,
+  "pooled_zero_rmse": 0.002951768212628088,
+  "checkpoint_verification": {
+    "scored_rows": 582,
+    "inference_rows": 588,
+    "point_max_delta": 2.710505431213761e-20,
+    "half_width_max_delta": 4.336808689942018e-19,
+    "checkpoint_sha256": "51800b0a9cd05f44cedcee97749881a260d05ce25c62408338f623d33bae9057"
+  },
+  "limitations": [
+    "2026 observations and earlier scores have already been viewed. This is retrospective improvement, not fresh independent evidence. Chronological dependence and nonstationarity prevent a distribution-free coverage guarantee.",
+    "The point model stays fixed after 2024; 2025 labels calibrate intervals only.",
+    "Nominal 90% intervals have no finite-sample guarantee under temporal dependence or drift.",
+    "Both interval variants are reported, not selected by 2026 score.",
+    "Reference rates are non-executable; no trading policy is changed by this study."
+  ]
+}
