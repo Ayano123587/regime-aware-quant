@@ -1,0 +1,49 @@
+{
+  "protocol_version": 1,
+  "source": "Bank of Canada FXUSDCAD",
+  "historical_data_sha256": "3a4a8fbeda0d6bdc4f57777e3f06b6cdbe611637fa37e8ec1bdb1679a491e403",
+  "development_disclosure": "2017-2025 already explored; chronological validation is retrospective development",
+  "validation_windows": [
+    [
+      "2021-01-01",
+      "2022-12-31"
+    ],
+    [
+      "2023-01-01",
+      "2025-12-31"
+    ]
+  ],
+  "train_rule": "All preceding features whose target_date is strictly before validation start; HMM bridge advances only feature rows",
+  "states": [
+    2,
+    3,
+    4
+  ],
+  "gating_strength": [
+    0.0,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "tree_settings": [
+    {
+      "max_depth": 1,
+      "reg_lambda": 30.0
+    },
+    {
+      "max_depth": 2,
+      "reg_lambda": 10.0
+    }
+  ],
+  "trees": 100,
+  "learning_rate": 0.03,
+  "hmm_max_iterations": 30,
+  "selection": "Pooled validation RMSE over two chronological windows; ties prefer lower strength/fewer states/shallower trees",
+  "final_refit": "All supervised 2017-2025 feature rows; final labels <=2025-12-31; preserve feature-only bridge",
+  "holdout_start": "2026-01-01",
+  "holdout_end": "2026-10-14",
+  "as_of_utc": "2026-10-15T19:29:07Z",
+  "publication_rule": "BoC daily indicative averages published by16:30 America/Toronto; Oct15 not yet safely available at lock planning time",
+  "final_rule": "Do not fetch/inspect2026APIvalues until selection.json is frozen; evaluate once, preserve aggregate report and local row predictions",
+  "uncertainty": "Paired moving-block bootstrap RMSE differences, 5-observation blocks,1000seeded replicates; no profitability claim"
+}

@@ -1,0 +1,88 @@
+{
+  "selected_spec": {
+    "states": 2,
+    "strength": 0.25,
+    "tree": {
+      "max_depth": 1,
+      "reg_lambda": 30.0
+    }
+  },
+  "selection_sha256": "5cc32c1b337860be9b0a2b665fc88a831235068cd237262e966638f1d4af133d",
+  "plan_sha256": "be7a48c08b3543782d720c8fc340c4f40287d3bce2021fef96fb6e750ea07f9d",
+  "new_source_url": "https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json?start_date=2026-01-01&end_date=2026-10-14",
+  "new_source_sha256": "c5cf5b9d0f348958590266e51c5fbbca90367920a7c0f484b086c11a41f0cdd4",
+  "source_observation_first": "2026-01-02 00:00:00+00:00",
+  "source_observation_last": "2026-10-14 00:00:00+00:00",
+  "new_observations": 196,
+  "test_rows": 195,
+  "test_feature_first": "2026-01-02 00:00:00+00:00",
+  "test_feature_last": "2026-10-13 00:00:00+00:00",
+  "test_target_last": "2026-10-14 00:00:00+00:00",
+  "train_rows": 2184,
+  "train_last_feature": "2025-12-30 00:00:00+00:00",
+  "train_last_target": "2025-12-31 00:00:00+00:00",
+  "bridge_rows": 1,
+  "selected": {
+    "rmse": 0.0025302463058352095,
+    "direction_accuracy": 0.558974358974359,
+    "annualized_sharpe": 0.8767997072103746,
+    "net_log_return": 0.02758534365495945,
+    "max_drawdown": -0.051003424867669844,
+    "turnover": 131.0,
+    "cost_bps_per_unit_turnover": 2,
+    "prediction_coverage": 1.0
+  },
+  "matched_global": {
+    "rmse": 0.0025309642546684575,
+    "direction_accuracy": 0.5641025641025641,
+    "annualized_sharpe": 0.9670213534846153,
+    "net_log_return": 0.03040303924640596,
+    "max_drawdown": -0.048371899779668937,
+    "turnover": 131.0,
+    "cost_bps_per_unit_turnover": 2,
+    "prediction_coverage": 1.0
+  },
+  "zero": {
+    "rmse": 0.0025475597264763713,
+    "direction_accuracy": null,
+    "annualized_sharpe": 0.0,
+    "net_log_return": 0.0,
+    "max_drawdown": 0.0,
+    "turnover": 0.0,
+    "cost_bps_per_unit_turnover": 2,
+    "prediction_coverage": 0.0
+  },
+  "selected_minus_global_uncertainty": {
+    "method": "paired circular moving-block bootstrap, block5, seed42, 1000draws; descriptive sampling uncertainty only",
+    "rmse_difference_95pct": [
+      -6.8206888728969554e-06,
+      4.977701430998264e-06
+    ]
+  },
+  "selected_minus_zero_uncertainty": {
+    "method": "paired circular moving-block bootstrap, block5, seed42, 1000draws; descriptive sampling uncertainty only",
+    "rmse_difference_95pct": [
+      -6.62026241678175e-05,
+      3.205181590279314e-05
+    ]
+  },
+  "local_predictions_sha256": "d82e48f9c4f26a9303003ef4b81fe9356e5304c34153f5f1f388baaec3142c1b",
+  "checkpoint_context_rows": 64,
+  "publication_assumption": "Indicative averages available after official16:30ETpublication; historical vintages unavailable",
+  "limitations": [
+    "One currency pair and one new partial year",
+    "2017-2025 used retrospectively for development",
+    "Causal filter only, no future heldout smoothing",
+    "Reference averages not executable quotes; publication delays and revisions not reconstructed",
+    "No test-guided tuning or guaranteed profit"
+  ],
+  "retrieved_at_utc": "2026-10-15T19:37:44.955974+00:00",
+  "environment": {
+    "python": "3.14.2",
+    "numpy": "2.4.2",
+    "pandas": "3.0.0",
+    "scipy": "1.17.0",
+    "scikit-learn": "1.8.0",
+    "xgboost": "3.4.1"
+  }
+}

@@ -9,7 +9,7 @@ import pandas as pd
 URL = "https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json?start_date=2017-01-01&end_date=2025-12-31"
 
 
-def load_prices(path):
+def load_prices(path, min_rows=150):
     frame = pd.read_csv(path)
     if not {"date", "close"} <= set(frame):
         if len(frame.columns) != 2:
@@ -18,9 +18,13 @@ def load_prices(path):
     frame = frame[["date", "close"]].copy()
     frame["date"] = pd.to_datetime(frame.date, errors="raise", utc=True)
     frame["close"] = pd.to_numeric(frame.close, errors="coerce")
-    frame = frame.dropna().sort_values("date").reset_index(drop=True)
-    if frame.date.duplicated().any() or (frame.close <= 0).any() or len(frame) < 150:
-        raise ValueError("Prices require >=150 unique dates and positive finite closes")
+    if frame.isna().any().any():
+        raise ValueError("Missing or malformed dates/prices are not silently dropped")
+    if not frame.date.is_monotonic_increasing:
+        raise ValueError("Price dates must be strictly chronological")
+    frame = frame.reset_index(drop=True)
+    if frame.date.duplicated().any() or (frame.close <= 0).any() or len(frame) < min_rows:
+        raise ValueError(f"Prices require >={min_rows} unique dates and positive finite closes")
     import numpy as np
     if not np.isfinite(frame.close).all():
         raise ValueError("Prices must be finite")

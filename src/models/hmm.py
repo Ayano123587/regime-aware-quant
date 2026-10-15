@@ -10,7 +10,7 @@ from sklearn.cluster import KMeans
 
 class GaussianHMM:
     def __init__(self, states=3, iterations=60, seed=42):
-        if states < 2 or iterations < 1:
+        if not isinstance(states,(int,np.integer)) or not isinstance(iterations,(int,np.integer)) or states < 2 or iterations < 1:
             raise ValueError("Require >=2 states and positive iterations")
         self.states, self.iterations, self.seed = states, iterations, seed
 
@@ -21,8 +21,9 @@ class GaussianHMM:
 
     def fit(self, x):
         x = np.asarray(x, dtype=float)
-        if x.ndim != 2 or len(x) < self.states*5 or not np.isfinite(x).all():
+        if x.ndim != 2 or x.shape[1]<1 or len(x) < self.states*5 or not np.isfinite(x).all():
             raise ValueError("Need finite 2D observations and >=5 rows per state")
+        if len(np.unique(x,axis=0))<self.states:raise ValueError("Need enough distinct observations for state initialization")
         self.center = x.mean(axis=0)
         self.scale = np.maximum(x.std(axis=0), 1e-6)
         z = (x-self.center)/self.scale
@@ -62,7 +63,13 @@ class GaussianHMM:
         return self
 
     def filter(self, x, previous=None):
-        z = (np.asarray(x, dtype=float)-self.center)/self.scale
+        if not hasattr(self,"center"):raise ValueError("HMM must be fitted before filtering")
+        x=np.asarray(x,dtype=float)
+        if x.ndim!=2 or x.shape[1]!=len(self.center) or not np.isfinite(x).all():raise ValueError("Need finite 2D observations with fitted feature dimension")
+        if previous is not None:
+            previous=np.asarray(previous,dtype=float)
+            if previous.shape!=(self.states,) or not np.isfinite(previous).all() or (previous<0).any() or not np.isclose(previous.sum(),1.):raise ValueError("Previous posterior must be a finite normalized state probability vector")
+        z = (x-self.center)/self.scale
         if z.ndim != 2 or not np.isfinite(z).all():
             raise ValueError("Need finite 2D observations")
         if not len(z):

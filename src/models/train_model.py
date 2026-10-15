@@ -16,42 +16,64 @@ from src.models.hmm import GaussianHMM
 REGIME_FEATURES = ["return_1", "volatility_20"]
 
 
-def learner(seed=SEED):
-    return XGBRegressor(n_estimators=100, max_depth=2, learning_rate=.03,
-                        subsample=.8, colsample_bytree=1, reg_lambda=10,
+def learner(seed=SEED, tree_settings=None):
+    tree_settings=tree_settings or {"max_depth":2,"reg_lambda":10.}
+    return XGBRegressor(n_estimators=100, max_depth=tree_settings["max_depth"], learning_rate=.03,
+                        subsample=.8, colsample_bytree=1, reg_lambda=tree_settings["reg_lambda"],
                         random_state=seed, n_jobs=2, objective="reg:squarederror")
 
 
-def fit_bundle(train):
-    hmm = GaussianHMM().fit(train[REGIME_FEATURES].to_numpy())
+def fit_bundle(train, states=3, strength=1., tree_settings=None, hmm_iterations=60, fitted_hmm=None, context_prices=None):
+    if not 0<=strength<=1:raise ValueError("Strength must be in [0,1]")
+    if train.empty or not train.date.is_monotonic_increasing or train.date.duplicated().any():raise ValueError("Training dates must be unique and increasing")
+    if not np.isfinite(train[FEATURES+["target"]].to_numpy()).all():raise ValueError("Training features/targets must be finite")
+    if not np.isfinite(train.close).all() or (train.close<=0).any():raise ValueError("Training reference prices must be finite and positive")
+    if "target_date" not in train or not (train.target_date>train.date).all():raise ValueError("Every training label must occur after its feature date")
+    hmm = fitted_hmm or GaussianHMM(states=states,iterations=hmm_iterations).fit(train[REGIME_FEATURES].to_numpy())
     posterior = hmm.filter(train[REGIME_FEATURES].to_numpy())
     x, y = train[FEATURES].to_numpy(), train.target.to_numpy()
-    baseline = learner().fit(x, y)
+    baseline = learner(tree_settings=tree_settings).fit(x, y)
     experts = []
     for k in range(hmm.states):
         # Soft sample weighting changes feature relationships for each expert.
-        experts.append(learner(SEED+k).fit(x, y, sample_weight=np.maximum(posterior[:, k], .001)))
-    return {"hmm": hmm, "experts": experts, "baseline": baseline,
+        experts.append(learner(SEED+k,tree_settings).fit(x, y, sample_weight=np.maximum(posterior[:, k], .001)))
+    context=train[["date","close"]].copy() if context_prices is None else context_prices.loc[context_prices.date<=train.target_date.max(),["date","close"]].copy()
+    if context_prices is None and "target_date" in train and not pd.isna(train.target_date.iloc[-1]):
+        context=pd.concat([context,pd.DataFrame({"date":[train.target_date.iloc[-1]],"close":[float(train.close.iloc[-1]*np.exp(train.target.iloc[-1]))]})],ignore_index=True)
+    context=context.drop_duplicates("date").tail(64).reset_index(drop=True)
+    return {"hmm": hmm, "experts": experts, "baseline": baseline,"strength":strength,"tree_settings":tree_settings,"price_context":context,
             "last_posterior": posterior[-1], "last_date": str(train.date.iloc[-1]),
+            "last_target_date":str(train.target_date.max()),"last_observed_date":str(context.date.max()),
             "features": FEATURES, "regime_features": REGIME_FEATURES}
 
 
 def forecast(bundle, frame, previous=None):
+    if frame.empty:return np.empty(0),np.empty((0,bundle["hmm"].states))
+    if not frame.date.is_monotonic_increasing or frame.date.duplicated().any() or frame.date.iloc[0]<=pd.Timestamp(bundle["last_date"]):raise ValueError("Forecast rows must be unique, chronological and after the checkpoint cutoff")
+    if not np.isfinite(frame[FEATURES].to_numpy()).all():raise ValueError("Forecast features must be finite")
     posterior = bundle["hmm"].filter(frame[REGIME_FEATURES].to_numpy(),
                                      bundle["last_posterior"] if previous is None else previous)
     experts = np.column_stack([model.predict(frame[FEATURES].to_numpy()) for model in bundle["experts"]])
-    return (experts * posterior).sum(axis=1), posterior
+    gated=(experts * posterior).sum(axis=1)
+    strength=bundle.get("strength",1.)
+    global_prediction=bundle["baseline"].predict(frame[FEATURES].to_numpy())
+    return strength*gated+(1-strength)*global_prediction, posterior
 
 
 def returns_summary(prediction, actual, cost_bps=2):
+    prediction=np.asarray(prediction,dtype=float);actual=np.asarray(actual,dtype=float)
+    if prediction.ndim!=1 or actual.shape!=prediction.shape or len(actual)<2 or not np.isfinite(prediction).all() or not np.isfinite(actual).all():raise ValueError("Need matching finite prediction/target vectors with >=2 rows")
+    if not np.isfinite(cost_bps) or cost_bps<0:raise ValueError("Cost must be nonnegative and finite")
+    active=prediction!=0
     position = np.sign(prediction)
-    # Position chosen at close t earns t->t+1 return. Initial entry has turnover.
+    # Hypothetical reference-level diagnostic only; averages are not executable.
     turnover = np.abs(np.diff(position, prepend=0))
     net = position * actual - turnover * cost_bps / 10000
     equity = np.exp(np.cumsum(net))
     peak = np.maximum.accumulate(np.r_[1., equity])[1:]
     return {"rmse": float(mean_squared_error(actual, prediction)**.5),
-            "direction_accuracy": float(np.mean((prediction > 0) == (actual > 0))),
+            "direction_accuracy": float(np.mean((prediction[active] > 0) == (actual[active] > 0))) if active.any() else None,
+            "prediction_coverage":float(active.mean()),
             "annualized_sharpe": float(np.mean(net)/max(np.std(net, ddof=1), 1e-12)*np.sqrt(252)),
             "net_log_return": float(net.sum()), "max_drawdown": float(np.min(equity/peak-1)),
             "turnover": float(turnover.sum()), "cost_bps_per_unit_turnover": cost_bps}
@@ -65,6 +87,7 @@ def evaluate(prices, output=Path("models/run"), folds=3):
         raise ValueError("Need >=300 feature/target observations")
     start = len(frame)//2
     bounds = np.linspace(start, len(frame), folds+1, dtype=int)
+    if np.min(np.diff(bounds))<2:raise ValueError("Each evaluation fold needs at least2observations")
     reports, prediction_frames = [], []
     for fold, (lo, hi) in enumerate(zip(bounds[:-1], bounds[1:])):
         test = frame.iloc[lo:hi]

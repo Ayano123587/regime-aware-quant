@@ -1,11 +1,14 @@
 # Regime-aware quantitative forecasting
 
 A reproducible research pipeline that combines a **Gaussian hidden Markov model** with
-three **XGBoost experts**. Each expert learns with a different posterior sample weighting;
-causal regime probabilities blend their next-day return forecasts. A global XGBoost model
+one **XGBoost expert per latent state** (three by default). Each expert learns with different posterior sample weights;
+causal regime probabilities blend their next-observation reference-return forecasts. A global XGBoost model
 and zero-return forecast provide fixed comparisons.
 
 ```sh
+python -m venv .venv
+# Windows PowerShell: activate this repository's environment
+.\.venv\Scripts\Activate.ps1
 python -m pip install -e ".[dev]"
 python -m src.data.make_dataset
 python -m src.models.train_model
@@ -25,8 +28,8 @@ Held-out states come from a forward filter; future observations never revise pas
 Tests explicitly check prefix invariance and chunked filtering equivalence.
 
 `models/run/evaluation.json` records measured results. `models/run/bundle.joblib` and prediction
-CSVs stay local. For inference, pass a price CSV containing sufficient rolling history and
-new rows after the model's training cutoff:
+CSVs stay local. New checkpoints retain 64 raw price context rows. For inference, supply all
+new observations since the cutoff; overlapping prices must agree with the saved context:
 
 ```sh
 python -m src.models.predict_model --data data/raw/new-prices.csv
@@ -38,9 +41,26 @@ can predict its final unlabeled close, if it is after the stored model cutoff.
 The latent states have arbitrary identities; they are not certified economic labels such as
 "trending" or "mean reverting." Daily reference rates are not executable bid/ask quotes.
 Reported equity is a hypothetical reference-price diagnostic with a stated turnover
-cost; it omits financing, market impact and publication/execution delay. Out-of-sample scores may underperform the
+cost; it omits financing, market impact and publication/execution delay. Daily averages are generally published by 16:30 ET, so same-day
+average levels cannot be treated as executable closes. Out-of-sample scores may underperform the
 global model or a zero forecast. No profitability or investment recommendation is claimed.
 
 Repository layout follows `src/{data,features,models,visualization}`, `tests`, `docs`,
 `notebooks` (EDA only), `.github`, `pyproject.toml`, `requirements.txt`, and `Makefile`.
 All data directories and `.env` are ignored. MIT licensed original implementation.
+
+## Validation-selected study and new 2026 evidence
+
+A prespecified search over 24 configurations selected two HMM states, a blend of 25% regime experts and 75% global model, and stronger tree regularization. The new 2026 observations were fetched after selection was frozen. Across 195 labeled forecasts, RMSE was 0.0025302463, versus 0.0025309643 for the matched global model and 0.0025475597 for a zero forecast. The small nominal gain is not statistically clear: paired bootstrap intervals include zero. See [evaluation](docs/evaluation.md).
+
+The frozen [development plan](docs/development-plan.md) and `models/development/selection.json` distinguish retrospective development on 2017–2025 data from the new 2026 evaluation. The test ends on October 14 because of publication availability at planning time. The final runner refuses to overwrite `models/development/evaluation.json`. Binary models and row predictions remain local. After reproducing the study, use its selected checkpoint with:
+
+```sh
+python -m src.models.predict_model --data data/external/prices-2026.csv --model models/development/bundle.joblib
+```
+
+The input may contain just the new observations since the cutoff because the checkpoint preserves rolling-price context. Supply all intervening observations; revisions to overlapping history or long missing gaps require an explicit refit/history repair. Bridge observations advance the state filter without appearing in output unless supplied by the caller.
+
+Use a separate virtual environment for each repository. These research projects use the requested generic `src` package layout; installing several together in one environment is unsupported. On Linux/macOS, activate with `source .venv/bin/activate` instead of the PowerShell command. All `python -m ...` and installed CLI commands assume the current repository directory and its activated environment. On Windows, direct `.venv\Scripts\python.exe -m ...` commands can also run without activation.
+
+To replicate the prespecified development study without overwriting its recorded evidence, copy `models/development/plan.json` into a fresh output directory and run `python -m src.models.development search --output NEW_DIRECTORY`, then `python -m src.models.development test --output NEW_DIRECTORY`. The historical source checksum must match the plan; API revisions require an explicit new data/version decision. A reproduction of the now-observed 2026 test is a replication, not new independent evidence. Do not use that test to select additional settings.

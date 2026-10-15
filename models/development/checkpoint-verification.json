@@ -1,0 +1,8 @@
+{
+  "aligned_labeled_rows": 195,
+  "checkpoint_rows": 196,
+  "maximum_absolute_prediction_difference": 4.0657581468206416e-20,
+  "checkpoint_latest_unlabeled_feature": "2026-10-14 00:00:00+00:00",
+  "same_checkpoint_predictions": true,
+  "scope": "Saved64pricecontext plus new prices reproduces all once-evaluated2026forecast rows; no parameters refitted"
+}

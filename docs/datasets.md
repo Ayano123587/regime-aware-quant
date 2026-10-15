@@ -33,3 +33,9 @@ held-out probabilities are forward-filtered. There is no held-out state relabeli
 The execution assumption is intentionally simple. Real strategy research also needs adjusted
 tradable prices, next-open or delayed execution, borrow constraints, slippage and fee sensitivity,
 walk-forward selection and independent temporal replication.
+
+## Availability and new-year evaluation
+
+[Official publication background](https://www.bankofcanada.ca/rates/exchange/background-information-on-foreign-exchange-rates/) and [daily rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/) state daily averages are published by16:30 ET and may be delayed. These averages derive from aggregated indicative quotes, not executable quotes. Dates are observation dates; original timestamped vintages and revision histories are not supplied in this snapshot. A model may use the current day's average only after publication, and forecast scores do not imply realizable trading returns.
+
+New2026observations were requested only after freezing the retrospective validation selection. The prespecified source window ends2026-10-14: at planning2026-10-15 19:29UTC, the Oct 15 daily publication time had not arrived. Final source URL/checksum/available date bounds are preserved in the aggregate report; source bytes, prices, predictions and checkpoint context remain local under ignored data/model binaries.

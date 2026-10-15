@@ -1,0 +1,356 @@
+{
+  "plan_sha256": "be7a48c08b3543782d720c8fc340c4f40287d3bce2021fef96fb6e750ea07f9d",
+  "historical_data_sha256": "3a4a8fbeda0d6bdc4f57777e3f06b6cdbe611637fa37e8ec1bdb1679a491e403",
+  "winner": {
+    "spec": {
+      "states": 2,
+      "strength": 0.25,
+      "tree": {
+        "max_depth": 1,
+        "reg_lambda": 30.0
+      }
+    },
+    "pooled_validation_rmse": 0.0036214205412892393,
+    "validation_rows": 1242
+  },
+  "runs": [
+    {
+      "spec": {
+        "states": 2,
+        "strength": 0.0,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036218403872935977,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 2,
+        "strength": 0.25,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036214205412892393,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 2,
+        "strength": 0.5,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.003622227504209524,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 2,
+        "strength": 1.0,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.003627517340669978,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 2,
+        "strength": 0.0,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.003635626488333733,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 2,
+        "strength": 0.25,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036371954719551813,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 2,
+        "strength": 0.5,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036405387053520567,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 2,
+        "strength": 1.0,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036525258450233393,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 3,
+        "strength": 0.0,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036218403872935977,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 3,
+        "strength": 0.25,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036225736379932837,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 3,
+        "strength": 0.5,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.003626010194845936,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 3,
+        "strength": 1.0,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036409565906661973,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 3,
+        "strength": 0.0,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.003635626488333733,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 3,
+        "strength": 0.25,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.003637415037059315,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 3,
+        "strength": 0.5,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.003643931023337792,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 3,
+        "strength": 1.0,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036710263510773933,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 4,
+        "strength": 0.0,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036218403872935977,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 4,
+        "strength": 0.25,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.003624777874626299,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 4,
+        "strength": 0.5,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.003631232318315372,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 4,
+        "strength": 1.0,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036546073895617217,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 4,
+        "strength": 0.0,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.003635626488333733,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 4,
+        "strength": 0.25,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036406491059229502,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 4,
+        "strength": 0.5,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.00365204214374188,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 4,
+        "strength": 1.0,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.003693670733139107,
+      "validation_rows": 1242
+    }
+  ],
+  "folds": [
+    {
+      "fold": 0,
+      "train_rows": 940,
+      "validation_rows": 496,
+      "train_last_target": "2020-12-31 00:00:00+00:00",
+      "validation_first": "2021-01-04 00:00:00+00:00",
+      "validation_last_target": "2022-12-30 00:00:00+00:00",
+      "bridge_rows": 1
+    },
+    {
+      "fold": 1,
+      "train_rows": 1437,
+      "validation_rows": 746,
+      "train_last_target": "2022-12-30 00:00:00+00:00",
+      "validation_first": "2023-01-03 00:00:00+00:00",
+      "validation_last_target": "2025-12-31 00:00:00+00:00",
+      "bridge_rows": 1
+    }
+  ],
+  "candidates": 24,
+  "new2026values_used": false,
+  "disclosure": "2017-2025 already explored; chronological validation is retrospective development",
+  "zero_pooled_validation_rmse": 0.0036269646061460686,
+  "matched_global_baselines": [
+    {
+      "spec": {
+        "states": 2,
+        "strength": 0.0,
+        "tree": {
+          "max_depth": 1,
+          "reg_lambda": 30.0
+        }
+      },
+      "pooled_validation_rmse": 0.0036218403872935977,
+      "validation_rows": 1242
+    },
+    {
+      "spec": {
+        "states": 2,
+        "strength": 0.0,
+        "tree": {
+          "max_depth": 2,
+          "reg_lambda": 10.0
+        }
+      },
+      "pooled_validation_rmse": 0.003635626488333733,
+      "validation_rows": 1242
+    }
+  ]
+}

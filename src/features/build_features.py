@@ -1,10 +1,13 @@
-"""All covariates are available at close t; target is close t+1 return."""
+"""Covariates use published reference observation t; target is the next observation."""
 import numpy as np
 from src.config import FEATURES
 
 
 def build_features(prices):
     frame = prices.copy()
+    if not {"date", "close"} <= set(frame):raise ValueError("Need date and close")
+    if frame.date.duplicated().any() or not frame.date.is_monotonic_increasing:raise ValueError("Prices must have unique increasing dates")
+    if not np.isfinite(frame.close.to_numpy(dtype=float)).all() or (frame.close<=0).any():raise ValueError("Prices must be finite positive values")
     close = frame.close
     frame["return_1"] = np.log(close).diff()
     frame["momentum_5"] = np.log(close).diff(5)
