@@ -8,11 +8,17 @@ and zero-return forecast provide fixed comparisons.
 ## Advanced multi-asset extension
 
 The latest [regularized forecast and uncertainty study](docs/uncertainty-study.md)
-reduces retrospective point RMSE to0.00295666 from0.00298725, while zero return remains
-slightly better at0.00295177. It adds chronological residual calibration, causal
+reduces retrospective point RMSE to 0.00295666 from 0.00298725, while zero return remains
+slightly better at 0.00295177. It adds chronological residual calibration, causal
 volatility-scaled intervals, quarterly error/coverage diagnostics and date-block uncertainty
 comparisons. A validation-only wider regularization search confirmed the selected setting.
-These observed-period results do not establish profitability or guaranteed90% coverage.
+These observed-period results do not establish profitability or guaranteed 90% coverage.
+
+A further [delayed-label calibration comparison](docs/online-interval-study.md) tested
+rolling 60/120-observation residual windows against fixed bands. Fixed calibration won
+the validation interval score and remains selected. The new JSON state API updates only
+matured labels, validates saved state and applies atomic updates; the full suite now
+passes 67 tests. This negative experiment leaves the mean model and trading policy intact.
 
 The existing project now also contains a prespecified **EUR/CAD, GBP/CAD and AUD/CAD** study with 22 causal features, asset-specific HMM execution-regime forecasts, validation-selected XGBoost gates, volatility-targeted sizing and a self-financing reference ledger. Decisions are queued for one observation before hypothetical execution; the trained target is the subsequent reference return. Post-cost gross/per-asset caps, cash, entry/reversal/liquidation fees, cost sensitivity and delayed-label drift diagnostics are tested explicitly.
 

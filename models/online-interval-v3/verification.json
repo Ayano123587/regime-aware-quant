@@ -1,0 +1,28 @@
+{
+  "matched_v2_rows": 582,
+  "max_delta": {
+    "target": 0.0,
+    "prediction": 1.0001765041178778e-16,
+    "half_width": 0.0
+  },
+  "new_test_predictions_sha256": "c708fd96e680107dd189d16210febcc8668a97554aa1b05a69a51e31c3d10e42",
+  "cli": "python -m src.models.online_intervals",
+  "state_roundtrip": "initial JSON load and midpoint JSON save/load reproduce full final replay exactly",
+  "tests_passed": 67,
+  "run_implementation_sha256": "ccca2096b66f967e5a1f92ae13a59c16962ee318f64e979652bb70cfb533d137",
+  "current_source_sha256": "4f24a6c5fabd70a01e7a0d6c492e8e2137091ed510c1fe5d5d0fc87e420f98d8",
+  "post_run_noncomputational_change": "Ignored artifact directory now follows output directory name so fresh reproductions preserve prior forecast/state archives. No policy, model, scores or queue behavior changed.",
+  "before_state_guard_source_sha256": "a34c312ec166a9c7e646c14a13997bc52c014d00a6445ba4932e5e1d8d480e0a",
+  "scientific_run_tests_passed": 34,
+  "state_guard_audit": {
+    "added_after_scientific_run": true,
+    "scientific_study_rerun": false,
+    "archived_state_files_loaded_without_replay": 3,
+    "guards": [
+      "strict schema/assets/counters/residual support/pending due indices and saved scales",
+      "duplicate JSON keys and nonfinite values rejected",
+      "dates normalized to UTC; NaT, invalid dates and gaps over seven days rejected",
+      "atomic copy-validate-commit; finite matured residuals and band endpoints required"
+    ]
+  }
+}

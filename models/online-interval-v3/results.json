@@ -1,0 +1,72 @@
+{
+  "selection_sha256": "367d444120ff7b95473ab483e7a9bca988e98b3d3cda9edfc97a86babb21664f",
+  "selected_policy": "fixed",
+  "observed_2026": {
+    "fixed": {
+      "pooled": {
+        "rows": 582,
+        "rmse": 0.0029566597822363798,
+        "coverage": 0.8814432989690721,
+        "mean_width": 0.009413238150816808,
+        "mean_interval_score": 0.013143861732746759
+      },
+      "per_asset": {
+        "FXAUDCAD": {
+          "rows": 194,
+          "rmse": 0.0036366816243403187,
+          "coverage": 0.8556701030927835,
+          "mean_width": 0.011123167761778584,
+          "mean_interval_score": 0.016670379055322235
+        },
+        "FXEURCAD": {
+          "rows": 194,
+          "rmse": 0.0023973726303058627,
+          "coverage": 0.8814432989690721,
+          "mean_width": 0.007405508705201073,
+          "mean_interval_score": 0.01059810229894091
+        },
+        "FXGBPCAD": {
+          "rows": 194,
+          "rmse": 0.0026930767605710835,
+          "coverage": 0.9072164948453608,
+          "mean_width": 0.009711037985470771,
+          "mean_interval_score": 0.012163103843977131
+        }
+      }
+    }
+  },
+  "state_verification": {
+    "fixed": {
+      "arrived_labels": 588,
+      "pending_labels": 6,
+      "final_state_sha256": "8d3bbe8f12a4555aa1a9fc243069b5a4c5882d8620b726c6757d8b4581ab0388",
+      "midpoint_save_load_exact": true
+    }
+  },
+  "point_checkpoint_sha256": "b5c263242f18a99307436df1545e5a46434deaf12fb8fd877c0e565a8289010c",
+  "test_provenance": {
+    "url": "https://www.bankofcanada.ca/valet/observations/FXEURCAD,FXGBPCAD,FXAUDCAD/json?start_date=2026-01-01&end_date=2026-10-14",
+    "sha256": "c64e0805e00a265135f122bf1df9c74091918e2f8a3567e821cbf3c96935b7e4",
+    "assets": [
+      "FXEURCAD",
+      "FXGBPCAD",
+      "FXAUDCAD"
+    ],
+    "rows": 196,
+    "first": "2026-01-02 00:00:00+00:00",
+    "last": "2026-10-14 00:00:00+00:00",
+    "retrieved_at_utc": "2026-10-15T20:22:02.413631+00:00",
+    "source": "Bank of Canada, Valet API; no endorsement",
+    "terms": "https://www.bankofcanada.ca/terms/",
+    "vintage_limitation": "Current API snapshot, not historical as-published vintages"
+  },
+  "runtime_seconds": 57.957675199984806,
+  "mean_model_changed": false,
+  "risk_policy_changed": false,
+  "disclosure": "All historical years and2026 observations already viewed. Retrospective procedure comparison, no independent evidence or coverage guarantee. Validation point training/calibration vintages differ from final unchanged v2 point model.",
+  "limitations": [
+    "Online order-statistic intervals have no distribution-free guarantee under drift or dependence.",
+    "Validation and final point models have different chronological training vintages.",
+    "Policies selected by proper interval score, not forced to nominal coverage or width."
+  ]
+}

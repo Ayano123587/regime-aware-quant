@@ -1,0 +1,45 @@
+{
+  "study": "delayed-online-interval-v3",
+  "assets": [
+    "FXEURCAD",
+    "FXGBPCAD",
+    "FXAUDCAD"
+  ],
+  "alpha": 0.1,
+  "policies": [
+    "fixed",
+    60,
+    120
+  ],
+  "selection": "minimum pooled 2025 mean proper interval score; ties prefer fixed then120 then60",
+  "diagnostic_point_selection_years": [
+    2021,
+    2022
+  ],
+  "diagnostic_point_candidates": [
+    {
+      "kind": "zero"
+    },
+    {
+      "kind": "ridge",
+      "alpha": 100
+    },
+    {
+      "kind": "ridge",
+      "alpha": 1000
+    },
+    {
+      "kind": "ridge",
+      "alpha": 10000
+    }
+  ],
+  "diagnostic_training_label_end": "2023-12-31",
+  "diagnostic_initial_calibration_year": 2024,
+  "validation_year": 2025,
+  "final_point_model": "unchanged models/uncertainty-v2/bundle.joblib; trained through2024",
+  "final_initial_calibration_year": 2025,
+  "test_year": 2026,
+  "queue": "save forecast and EWM scale at decision t; actual log return from t+1 to t+2 arrives after publication at t+2, before current forecast; include two pending pre-period decisions",
+  "maximum_cpu_seconds": 600,
+  "disclosure": "All historical years and2026 observations already viewed. Retrospective procedure comparison, no independent evidence or coverage guarantee. Validation point training/calibration vintages differ from final unchanged v2 point model."
+}

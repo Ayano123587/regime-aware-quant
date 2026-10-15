@@ -1,0 +1,211 @@
+{
+  "plan_sha256": "596cd44dc6a7e6a95fbc71a525fa41f97ae9ff3fb622e891495fff622ef07a76",
+  "implementation_sha256": "ccca2096b66f967e5a1f92ae13a59c16962ee318f64e979652bb70cfb533d137",
+  "point_selection": [
+    {
+      "spec": {
+        "kind": "zero"
+      },
+      "pooled_validation_rmse": 0.004245414708163409,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035097725527324895
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004873579787696267
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 100
+      },
+      "pooled_validation_rmse": 0.0042652257323782085,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035075722873117465
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004909702345806353
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 1000
+      },
+      "pooled_validation_rmse": 0.004243321468378567,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035004111255965272
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004876685543301225
+        }
+      ]
+    },
+    {
+      "spec": {
+        "kind": "ridge",
+        "alpha": 10000
+      },
+      "pooled_validation_rmse": 0.004238583635372401,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.003502505263243202
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.0048669088902775414
+        }
+      ]
+    }
+  ],
+  "diagnostic_point_spec": {
+    "kind": "ridge",
+    "alpha": 10000
+  },
+  "runs": [
+    {
+      "policy": "fixed",
+      "validation": {
+        "pooled": {
+          "rows": 741,
+          "rmse": 0.003618342006744905,
+          "coverage": 0.9298245614035088,
+          "mean_width": 0.012524744865702375,
+          "mean_interval_score": 0.01601720215387286
+        },
+        "per_asset": {
+          "FXAUDCAD": {
+            "rows": 247,
+            "rmse": 0.004109192392063835,
+            "coverage": 0.951417004048583,
+            "mean_width": 0.013654458063520338,
+            "mean_interval_score": 0.017727883456317872
+          },
+          "FXEURCAD": {
+            "rows": 247,
+            "rmse": 0.003289482641387173,
+            "coverage": 0.9230769230769231,
+            "mean_width": 0.011024076768265346,
+            "mean_interval_score": 0.014702914366412108
+          },
+          "FXGBPCAD": {
+            "rows": 247,
+            "rmse": 0.0034016229171296183,
+            "coverage": 0.9149797570850202,
+            "mean_width": 0.01289569976532144,
+            "mean_interval_score": 0.015620808638888593
+          }
+        }
+      }
+    },
+    {
+      "policy": 60,
+      "validation": {
+        "pooled": {
+          "rows": 741,
+          "rmse": 0.003618342006744905,
+          "coverage": 0.9041835357624831,
+          "mean_width": 0.01241923694427621,
+          "mean_interval_score": 0.0163890008910584
+        },
+        "per_asset": {
+          "FXAUDCAD": {
+            "rows": 247,
+            "rmse": 0.004109192392063835,
+            "coverage": 0.9068825910931174,
+            "mean_width": 0.012760054574922039,
+            "mean_interval_score": 0.017614246060554145
+          },
+          "FXEURCAD": {
+            "rows": 247,
+            "rmse": 0.003289482641387173,
+            "coverage": 0.8987854251012146,
+            "mean_width": 0.011510710318488486,
+            "mean_interval_score": 0.015533290972770921
+          },
+          "FXGBPCAD": {
+            "rows": 247,
+            "rmse": 0.0034016229171296183,
+            "coverage": 0.9068825910931174,
+            "mean_width": 0.012986945939418102,
+            "mean_interval_score": 0.016019465639850145
+          }
+        }
+      }
+    },
+    {
+      "policy": 120,
+      "validation": {
+        "pooled": {
+          "rows": 741,
+          "rmse": 0.003618342006744905,
+          "coverage": 0.9041835357624831,
+          "mean_width": 0.012203217125720976,
+          "mean_interval_score": 0.01603790527297193
+        },
+        "per_asset": {
+          "FXAUDCAD": {
+            "rows": 247,
+            "rmse": 0.004109192392063835,
+            "coverage": 0.9190283400809717,
+            "mean_width": 0.012870998737817123,
+            "mean_interval_score": 0.01743557159873791
+          },
+          "FXEURCAD": {
+            "rows": 247,
+            "rmse": 0.003289482641387173,
+            "coverage": 0.8947368421052632,
+            "mean_width": 0.010871147980144392,
+            "mean_interval_score": 0.014835505442602264
+          },
+          "FXGBPCAD": {
+            "rows": 247,
+            "rmse": 0.0034016229171296183,
+            "coverage": 0.8987854251012146,
+            "mean_width": 0.01286750465920141,
+            "mean_interval_score": 0.01584263877757562
+          }
+        }
+      }
+    }
+  ],
+  "selected_policy": "fixed",
+  "test_used_for_selection": false,
+  "development_provenance": {
+    "url": "https://www.bankofcanada.ca/valet/observations/FXEURCAD,FXGBPCAD,FXAUDCAD/json?start_date=2017-01-01&end_date=2025-12-31",
+    "sha256": "58c8d02de064898f4387d5727972083d5ea3850aa94009da200f07fbad97df5e",
+    "assets": [
+      "FXEURCAD",
+      "FXGBPCAD",
+      "FXAUDCAD"
+    ],
+    "rows": 2244,
+    "first": "2017-01-03 00:00:00+00:00",
+    "last": "2025-12-31 00:00:00+00:00",
+    "retrieved_at_utc": "2026-10-15T20:09:46.213010+00:00",
+    "source": "Bank of Canada, Valet API; no endorsement",
+    "terms": "https://www.bankofcanada.ca/terms/",
+    "vintage_limitation": "Current API snapshot, not historical as-published vintages"
+  },
+  "disclosure": "All historical years and2026 observations already viewed. Retrospective procedure comparison, no independent evidence or coverage guarantee. Validation point training/calibration vintages differ from final unchanged v2 point model."
+}
