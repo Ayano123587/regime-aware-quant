@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "regime-aware-quant"
+version = "0.1.0"
+description = "Causal Gaussian-HMM gated XGBoost market forecasting research"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.0", "pandas>=2.2", "scipy>=1.14", "scikit-learn>=1.5", "xgboost>=3.0", "joblib>=1.4"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "matplotlib>=3.9"]
+
+[project.scripts]
+regime-train = "src.models.train_model:main"
+regime-predict = "src.models.predict_model:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
