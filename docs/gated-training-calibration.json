@@ -1,0 +1,223 @@
+{
+  "schema": "selected_gated_training_calibration_v1",
+  "policy_sha256": "0f511814a9cd0e4f97626bdd8deafbe3d290b25b7829e210eeed6495c4339bd0",
+  "validation_rows": 2961,
+  "validation": [
+    {
+      "name": "zero",
+      "validation": {
+        "n": 2961,
+        "rmse": 0.003913798891652039
+      },
+      "folds": [
+        {
+          "year": 2021,
+          "n": 741,
+          "rmse": 0.003509772552732489
+        },
+        {
+          "year": 2022,
+          "n": 738,
+          "rmse": 0.004873579787696267
+        },
+        {
+          "year": 2023,
+          "n": 738,
+          "rmse": 0.004001421373076264
+        },
+        {
+          "year": 2024,
+          "n": 744,
+          "rmse": 0.00304156960375828
+        }
+      ],
+      "assets": {
+        "FXEURCAD": {
+          "n": 987,
+          "rmse": 0.0037042679323338315
+        },
+        "FXGBPCAD": {
+          "n": 987,
+          "rmse": 0.004027270989023415
+        },
+        "FXAUDCAD": {
+          "n": 987,
+          "rmse": 0.004001618767367001
+        }
+      }
+    },
+    {
+      "name": "linear_10000",
+      "validation": {
+        "n": 2961,
+        "rmse": 0.0039109948384311215
+      },
+      "folds": [
+        {
+          "year": 2021,
+          "n": 741,
+          "rmse": 0.003502505263243202
+        },
+        {
+          "year": 2022,
+          "n": 738,
+          "rmse": 0.0048669088902775414
+        },
+        {
+          "year": 2023,
+          "n": 738,
+          "rmse": 0.0040008856496744375
+        },
+        {
+          "year": 2024,
+          "n": 744,
+          "rmse": 0.00304684828446065
+        }
+      ],
+      "assets": {
+        "FXEURCAD": {
+          "n": 987,
+          "rmse": 0.0037073768990901032
+        },
+        "FXGBPCAD": {
+          "n": 987,
+          "rmse": 0.004018430966014819
+        },
+        "FXAUDCAD": {
+          "n": 987,
+          "rmse": 0.003999401327470261
+        }
+      }
+    },
+    {
+      "name": "gate_1.2_2",
+      "validation": {
+        "n": 2961,
+        "rmse": 0.003906405721804341
+      },
+      "folds": [
+        {
+          "year": 2021,
+          "n": 741,
+          "rmse": 0.003500147242704444
+        },
+        {
+          "year": 2022,
+          "n": 738,
+          "rmse": 0.004855723525145411
+        },
+        {
+          "year": 2023,
+          "n": 738,
+          "rmse": 0.0040030399048086055
+        },
+        {
+          "year": 2024,
+          "n": 744,
+          "rmse": 0.003041007142580898
+        }
+      ],
+      "assets": {
+        "FXEURCAD": {
+          "n": 987,
+          "rmse": 0.003700993453490112
+        },
+        "FXGBPCAD": {
+          "n": 987,
+          "rmse": 0.004019423256288799
+        },
+        "FXAUDCAD": {
+          "n": 987,
+          "rmse": 0.003990852181435085
+        }
+      }
+    }
+  ],
+  "validation_result_sha256": "af2adb17f4c11a30e8db26f48b383a922c61762da7e36212b563f136a5bce7e1",
+  "training": {
+    "FXEURCAD": {
+      "rows": 1933,
+      "first_decision": "2017-03-29",
+      "last_decision": "2024-12-27",
+      "last_target_maturity": "2024-12-31"
+    },
+    "FXGBPCAD": {
+      "rows": 1933,
+      "first_decision": "2017-03-29",
+      "last_decision": "2024-12-27",
+      "last_target_maturity": "2024-12-31"
+    },
+    "FXAUDCAD": {
+      "rows": 1933,
+      "first_decision": "2017-03-29",
+      "last_decision": "2024-12-27",
+      "last_target_maturity": "2024-12-31"
+    }
+  },
+  "calibration": {
+    "FXEURCAD": {
+      "rows": 247,
+      "first_decision": "2025-01-02",
+      "last_decision": "2025-12-29",
+      "last_target_maturity": "2025-12-31",
+      "normalized_quantile": 1.6174206110971754
+    },
+    "FXGBPCAD": {
+      "rows": 247,
+      "first_decision": "2025-01-02",
+      "last_decision": "2025-12-29",
+      "last_target_maturity": "2025-12-31",
+      "normalized_quantile": 1.804818398669295
+    },
+    "FXAUDCAD": {
+      "rows": 247,
+      "first_decision": "2025-01-02",
+      "last_decision": "2025-12-29",
+      "last_target_maturity": "2025-12-31",
+      "normalized_quantile": 1.5819973403259258
+    }
+  },
+  "mean_model_state_sha256": {
+    "FXEURCAD": "a8acfaf6cd1dd1c271da81f3d0fabcb75d86a198b1785fe4f34f1921ebd555cf",
+    "FXGBPCAD": "5282ee193242cd4b17beea43e081b599bb66573f7f93121b2be910d89e39ab39",
+    "FXAUDCAD": "c13e6ab342dff479ca40f89bcabfc625299a4f4779147adeb3d599cb1d65499e"
+  },
+  "mean_receipt_sha256": "d1401dae76b532d0e05ada83c529df57e32436ba53cbdae70eacd56f9d65e3a3",
+  "calibrated_receipt_sha256": "5506bc773682b8868f4e4934ff3eaf189deea8bb9aeb270525c7c8f7d17b5875",
+  "mean_bundle_sha256": "5a4d6575d86f7e42e300c7e9421346884d27b2b4a6495bb7ba8401f687224bc8",
+  "calibrated_bundle_sha256": "ca28597f9ff5c6023ed6c945bc23cc5434cc47d3817c68c11826f02f04aca60e",
+  "mean_save_reload_max_difference": 0.0,
+  "mean_refitted_for_calibration": false,
+  "test_accessed": false,
+  "coldstart_integration": {
+    "source_commit": "d6c0153dc40500ee2c291024d64425fe25ed342e",
+    "manifest_sha256": "3c808802589973d5ccd8cc579fad6ca2c5b81ad30514ac5efd36514ee131a5c9",
+    "runner_sha256": "970008073b8c48cb6f960d86b46e2b4de71a0362523b4fa7cdc479a8748b29f1",
+    "environment": {
+      "python": "3.13.15",
+      "numpy": "2.2.6",
+      "pandas": "2.2.3",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.6.1",
+      "joblib": "1.4.2",
+      "threadpoolctl": "3.6.0"
+    },
+    "actual_fresh_mean_fits": 3,
+    "matured_training_rows": 5799,
+    "calibration_rows": 741,
+    "pre2026_mean_forecast_rows": 747,
+    "mean_freeze_sha256": "51acb3b56802b57a4b2a3b365e0de25b0b4cf8a11245438a977a18df2cccde3e",
+    "calibrated_receipt_sha256": "5506bc773682b8868f4e4934ff3eaf189deea8bb9aeb270525c7c8f7d17b5875",
+    "reference_numerical_state_equal": true,
+    "mean_final_reload_max_delta": 0.0,
+    "reported_accuracy_reused": false,
+    "accuracy_evaluated": false,
+    "test_accessed": false,
+    "original_model_artifacts_mounted": false,
+    "mean_source_sha256": "cff4c3aa15c528f308de6b7916b875ea8d60fef4c501f1bf52815f67f9e5f85e",
+    "input_representation": "sorted_keys_compact_observations_lf_v1",
+    "full747_representation_max_abs_difference": 0.0,
+    "parent_parsed_only_after_mean_freeze": true,
+    "proof_sha256": "28ef518d9166b28edb8533941985c10cfef596faf77045218f01883f4cdf4dc4"
+  }
+}

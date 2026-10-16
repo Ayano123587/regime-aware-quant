@@ -1,17 +1,27 @@
-# FX forecasting: results and reproduction
+# FX forecasting: method and results
 
-The retained three-asset model uses train-scaled ridge regression (alpha=10,000), with no fitted intercept. Its previously observed 2026 RMSE is 0.002956659782, compared with 0.002987248013 for the global-tree baseline and 0.002951768213 for zero. The learned forecast improves the tree baseline but does not beat zero. This is not evidence of profit or a deployable trading edge.
+The selected model is per-asset ridge regression (alpha 10,000, no fitted intercept) over 22 causal features. It doubles the predicted return when the decision-time volatility ratio is strictly greater than 1.2. Scaling uses matured training rows only; peer features lag one publication, and targets measure the delayed t+1 to t+2 return.
 
-Data are daily Bank of Canada EUR/CAD, GBP/CAD and AUD/CAD reference rates. The mean model trains through 2024; 2021-24 chronological folds choose its configuration. Residual calibration is separate in 2025. Features use only published observations, peer covariates lag one observation, labels span delayed t+1 to t+2 returns, and boundary labels are purged. Saved inference retains full causal EWMA context. Current API snapshots lack as-published historical vintages.
+## Validation and training
 
-## Calibration
+Chronological 2021–2024 folds contain 2,961 eligible asset decisions. Validation RMSE is 0.00390641 for the selected gate, 0.00391099 for ungated ridge and 0.00391380 for zero. Repeated validation development makes these differences descriptive; they are not independent evidence of an edge.
 
-Fixed residual calibration won 2025 proper interval score: 0.01601720 versus rolling-120 0.01603791 and rolling-60 0.01638900. No rolling policy was selected by 2026 outcomes. Fixed observed coverage was 0.881443, width 0.00941324 and interval score 0.01314386. Coverage is empirical and not guaranteed under nonstationarity. The online queue records 588 arrivals including six bridge labels, 582 scored test forecasts and six pending decisions; these counts refer to different cohorts.
+Three fresh mean fits use all 5,799 eligible decisions through 2024. Separate 2025 calibration uses all 741 eligible decisions without refitting the mean. Each asset's interval half-width is its fixed 90% normalized residual quantile multiplied by decision-time EWMA volatility, floored at 0.00001.
 
-## Reproduce
+## Observed cohort
 
-Use a fresh repository environment. `python train.py selected --output models/my-forecast` reproduces chronological validation and saves the final mean model and interval calibration without loading 2026 data. Outputs must be fresh. `python evaluation_scripts/evaluate.py --checkpoint-directory models/my-forecast --report-directory models/my-observed-report --predictions data/interim/my-observed-predictions.csv --acknowledge-observed` explicitly evaluates the previously observed cohort. Forecasting uses `python -m src.models.uncertainty forecast --output models/my-forecast --panel YOUR_COMPLETE_PANEL.csv --predictions data/interim/new-forecasts.csv`; existing forecast files are rejected.
+The already observed 2026 snapshot contains 196 publications per asset. Evaluation covers all 582 matured decisions; six pending decisions are excluded from scoring.
 
-Checkpoint SHA256: `b5c263242f18a99307436df1545e5a46434deaf12fb8fd877c0e565a8289010c`. The observed test snapshot hash and exact metrics are recorded in [models/uncertainty-v2/results.json](models/uncertainty-v2/results.json). No weights, source rows, predictions or online states are distributed. Source terms are in [docs/datasets.md](docs/datasets.md).
+| Forecast | RMSE |
+| --- | ---: |
+| Selected volatility gate | 0.00295114 |
+| Ungated ridge | 0.00295666 |
+| Zero return | 0.00295177 |
 
-The three executed analysis notebooks include readable causal feature/fit/calibration code, actual chronological tables, aggregate error/interval plots and saved-checkpoint mechanics. They never rescore an observed test. Standalone figures are in `docs/figures`. Source checks cover causal boundaries, delayed labels and fresh-output guards; notebook execution is recorded separately.
+Selected nominal 90% intervals have coverage 0.88316, mean width 0.00949003 and proper interval score 0.01309862. The point improvement over zero is tiny and mixed across assets. Reference rates are not executable quotes; these results do not demonstrate trading profit. Serial dependence and current-vintage data also limit interval guarantees.
+
+## Reproduction
+
+Follow [README.md](README.md) to fetch mean data, train, verify the mean freeze, acquire calibration data, calibrate and forecast. Provider revisions stop pinned reproduction. Fresh training and calibration were verified in a separate cloud run; all 582 matured point forecasts and interval bounds match the audited reference within 6.1e-18, and all 588 saved forecasts reproduce after reload.
+
+[Training and calibration evidence](docs/gated-training-calibration.json) and [observed results](docs/gated-observed-results.json) record the model, source and audit identities. The four notebooks contain executed source-data analysis, visible model code, full-cohort validation, and result plots. Source terms and historical-vintage limitations are in [docs/datasets.md](docs/datasets.md). Data, weights and individual predictions remain ignored.

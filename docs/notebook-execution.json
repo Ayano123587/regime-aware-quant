@@ -1,5 +1,5 @@
 {
-  "scope": "Executed real-input EDA and recorded aggregate analysis; no new test scoring or full training from notebook viewing. Optional acquisition/training flags remained false.",
+  "scope": "Executed real-input EDA, current model definitions, full-cohort recorded validation and numerical prediction replay; no fresh fitting or test-policy selection from notebook viewing. Optional fresh acquisition/training flag remained false.",
   "notebooks": [
     {
       "path": "notebooks/01_source_timing_and_eda.ipynb",
@@ -12,30 +12,33 @@
     },
     {
       "path": "notebooks/02_main_causal_models_and_training.ipynb",
-      "sha256": "e7ab41e57b91e061553fbc09481698938a40aa767efb1c8debdb27574a03729f",
+      "sha256": "9621adc8e52daefc3101f1a0aa93f4c5c81250735a700ecb6be507d0201010d0",
       "code_cells": 8,
-      "code_lines": 197,
+      "code_lines": 538,
       "embedded_pngs": 1,
       "executed": true,
-      "executed_file_sha256": "dda022cb2e5862ba12892a021cbe798a8dfea8847e20964f3c69f45ccf56b1f7"
+      "executed_file_sha256": "791529c5587fffad30c07c75c0874c0946e5523c77929de5df703f0038a4814b"
     },
     {
       "path": "notebooks/03_observed_errors_and_intervals.ipynb",
-      "sha256": "d5c4b3eea148d593df60b9db983c4793d7bf6190c9e0f5b8fe4cc080f4f2735d",
-      "code_cells": 4,
-      "code_lines": 51,
+      "sha256": "7b317be40120a8bc0c3d92d1e98a3b81cfcca1dcf7a1257c2ac322ca81132cf8",
+      "code_cells": 5,
+      "code_lines": 103,
       "embedded_pngs": 2,
       "executed": true,
-      "executed_file_sha256": "d2a3e520660771b10f4ccf8fca31fefe3e19b511147ba79c257201b30bb24297"
+      "executed_file_sha256": "c0b8b31adc5048d6f274407f11304c15f4483777eb5858c5f21e7a7eb5f55ee9"
+    },
+    {
+      "path": "notebooks/04_selected_forecast_training_and_calibration.ipynb",
+      "sha256": "e476a740c2ab7db1e57801311305f337104dca74f63a8d2d838e26f6ce2b4af1",
+      "code_cells": 8,
+      "code_lines": 136,
+      "embedded_pngs": 2,
+      "executed": true,
+      "executed_file_sha256": "ff64fb5d07497127df9d73e58dce7c3b8898a755f71b3679b77bcaff4cb25d6f"
     }
   ],
   "figures": [
-    {
-      "path": "docs/figures/quant_chronological_validation.png",
-      "sha256": "5371de1591ca191d86e5da7a960e360543926110291adda5b5fabcbf08d8e519",
-      "width": 1526,
-      "height": 543
-    },
     {
       "path": "docs/figures/quant_development_distributions.png",
       "sha256": "fb2660665fa78176d31459462f2c5e0ec3c9ed4cb77714f70285accb418482a0",
@@ -43,16 +46,28 @@
       "height": 544
     },
     {
-      "path": "docs/figures/quant_observed_interval_diagnostics.png",
-      "sha256": "18aeececa9f4f8a3088fd17b0f2185b0f4d2e5442b9d34dab4c579d86e9d010c",
-      "width": 1806,
-      "height": 543
+      "path": "docs/figures/selected_gate_observed_intervals.png",
+      "sha256": "848c5470a1a4d29d7ddf5ea6964c0e07a6eeb7c9f8e0830071dabd2fab18a5f0",
+      "width": 1500,
+      "height": 600
     },
     {
-      "path": "docs/figures/quant_observed_point_comparison.png",
-      "sha256": "e24d2000ca56c80812d51757a882d92c38e7508a8e3df46fa0036ba988552a2a",
-      "width": 1105,
-      "height": 543
+      "path": "docs/figures/selected_gate_observed_point_errors.png",
+      "sha256": "6a5dfc764d22c03022b70df18e2f5cff7b52e4a857d22fbba1dab35199239c3b",
+      "width": 1650,
+      "height": 600
+    },
+    {
+      "path": "docs/figures/selected_gate_training_calibration.png",
+      "sha256": "af2be6f3246c58af3279319be0ab7e206dc3cf386f0c8a9129949209a71cfc30",
+      "width": 1500,
+      "height": 600
+    },
+    {
+      "path": "docs/figures/selected_gate_validation.png",
+      "sha256": "17860724b72583616e2f78b7e8208ce1f2a60b8656db2d560e8a3b40384082bc",
+      "width": 1200,
+      "height": 600
     }
   ],
   "schema_and_plain_python_compilation": "passed",

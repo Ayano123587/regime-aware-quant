@@ -5,17 +5,16 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "regime-aware-quant"
 version = "0.1.0"
-description = "Causal Gaussian-HMM gated XGBoost market forecasting research"
-requires-python = ">=3.11"
-dependencies = ["numpy>=2.0", "pandas>=2.2", "scipy>=1.14", "scikit-learn>=1.5", "xgboost>=3.0", "joblib>=1.4"]
+description = "Causal volatility-gated FX forecasts with chronological validation and residual intervals"
+requires-python = ">=3.11,<3.14"
+dependencies = ["numpy==2.2.6", "pandas==2.2.3", "scipy==1.15.3", "scikit-learn==1.6.1", "joblib==1.4.2", "threadpoolctl==3.6.0", "xgboost>=3.0"]
 
 [project.optional-dependencies]
 notebooks = ["jupyter>=1,<2", "matplotlib>=3.8,<4", "pandas>=2.2,<4"]
 dev = ["pytest>=8", "matplotlib>=3.9"]
 
 [project.scripts]
-regime-train = "src.models.train_model:main"
-regime-predict = "src.models.predict_model:main"
+regime-forecast = "src.gated_workflow:main"
 regime-advanced = "src.models.advanced:main"
 
 [tool.setuptools.packages.find]

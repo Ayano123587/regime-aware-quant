@@ -1,0 +1,91 @@
+{
+  "status": "Fixed before explicit candidate rescoring; validation diagnostics informed the hypothesis",
+  "hypothesis": "Volatility expansion may identify when frozen ridge forecasts are useful; other states abstain to zero without dropping rows.",
+  "source_sha256": "21b11ed0fb6a6d8348b39a4553763a68a9a37a4e81aa7474cb6b843c9660bacc",
+  "assets": [
+    "FXEURCAD",
+    "FXGBPCAD",
+    "FXAUDCAD"
+  ],
+  "validation_years": [
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "expected_fold_rows": [
+    741,
+    738,
+    738,
+    744
+  ],
+  "candidates": [
+    [
+      1.0,
+      1
+    ],
+    [
+      1.0,
+      2
+    ],
+    [
+      1.2,
+      1
+    ],
+    [
+      1.2,
+      2
+    ]
+  ],
+  "control_names": [
+    "zero",
+    "linear_1000",
+    "linear_10000",
+    "linear_30000",
+    "unconditional_2"
+  ],
+  "minimum_relative_rmse_gain": 0.001,
+  "minimum_year_wins": 3,
+  "maximum_asset_relative_rmse_regression": 0.001,
+  "ratio": {
+    "short_observations": 5,
+    "long_observations": 20,
+    "ddof": 1,
+    "denominator_floor": 1e-08,
+    "causal": true
+  },
+  "gate_comparison": "strict_greater_than",
+  "maximum_source_date": "2024-12-31",
+  "maximum_target_maturity": "2024-12-31",
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20261016,
+  "bootstrap_selection_gate": false,
+  "tie_order": "declared_candidate_order",
+  "refit_weights": false,
+  "prediction_sha256": {
+    "zero-private-predictions.json": "0de7730c4507b1efa9e263146bf743a9d793da79ce0715084b733da35f477d3b",
+    "linear_1000-private-predictions.json": "b1db563952d89bd27ccf1d293a4389516ca1137cdcbb2146014152be7a892e1b",
+    "linear_10000-private-predictions.json": "2f11484aee72351ba7e6fe459e29f96cc151eca0435c2c720972f15fba414946",
+    "linear_30000-private-predictions.json": "55c1b3102fc1907352f6426c0c4e7caebb0acf677cb9ab0f61db80ed45636bf6"
+  },
+  "prediction_provenance": {
+    "canonical": "aikyatansinha/causal-volatility-interaction-ridge-study",
+    "version": 1,
+    "source_commit": "0ef2b3234bfa9357c585b7ef2c59ab8389ea0477",
+    "manifest_sha256": "f33a468215d87f03aeb9231f01b24ba95be9a265312c666ddff8596ac7e5b32c",
+    "runner_sha256": "21f2a6577e413dc56ebc2ce6a4d5d4016cde10f27a288afefe48febaecc39539"
+  },
+  "selection": "An eligible candidate must reduce pooled RMSE by at least 0.1 percent against the strongest zero/linear/unconditional-amplitude control, win at least three of four years against both retained ridge and the same unconditional multiplier, and not regress any asset RMSE by more than 0.1 percent against retained ridge. Choose lowest eligible pooled RMSE; exact ties follow candidate order. Otherwise retain linear_10000.",
+  "development_information": "All validation years, earlier model scores and conditional residual diagnostics have been observed. The diagnostic slopes are not fitted coefficients or candidate outcomes. This is repeated development-selected abstention, not independent confirmation.",
+  "weights": "Use the authenticated full-fold alpha-10000 ridge predictions unchanged. No refit or slope estimation. Every candidate returns a numerical prediction for every required date/asset.",
+  "after_selection": "No production change until saved inference applies the same causal ratio, strict threshold and fixed multiplier with verified parity. Any separate 2025 interval calibration occurs only after mean policy freeze. No 2026 candidate selection.",
+  "disconfirmation": "Retain the existing model if no pooled margin, if improvement depends on too few years, if any asset exceeds the regression limit, or if source/inference contracts fail.",
+  "limits": [
+    "Source is a current snapshot rather than an as-published vintage.",
+    "Shared CAD exposure and serial dependence limit generalization.",
+    "Month-block intervals are descriptive, not selection gates.",
+    "Reference rates do not establish executable trading profit."
+  ],
+  "schema": "volatility_gate_plan_v1",
+  "parent_audit_sha256": "20129a76fce8c994b03a2e3fc52eafe608629c24e7a7b823bb34c9cba1e3db8e"
+}

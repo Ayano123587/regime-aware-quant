@@ -1,0 +1,104 @@
+{
+  "study": "bounded-volatility-interactions",
+  "hypothesis": "Strongly regularized conditional signal coefficients may capture volatility-state effects without separate regime experts.",
+  "assets": [
+    "FXEURCAD",
+    "FXGBPCAD",
+    "FXAUDCAD"
+  ],
+  "validation_years": [
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "expected_fold_rows": [
+    741,
+    738,
+    738,
+    744
+  ],
+  "alphas": [
+    1000,
+    10000,
+    30000
+  ],
+  "signals": [
+    "return_1",
+    "momentum_3",
+    "momentum_20",
+    "zscore_20",
+    "rsi_14",
+    "autocorrelation_20",
+    "peer_return_lag1",
+    "relative_momentum"
+  ],
+  "base_features": [
+    "return_1",
+    "momentum_3",
+    "momentum_5",
+    "momentum_10",
+    "momentum_20",
+    "momentum_60",
+    "volatility_5",
+    "volatility_20",
+    "volatility_60",
+    "ewma_volatility",
+    "volatility_ratio",
+    "downside_20",
+    "drawdown_60",
+    "zscore_20",
+    "rsi_14",
+    "autocorrelation_20",
+    "skew_20",
+    "gap_days",
+    "peer_return_lag1",
+    "peer_momentum_lag1",
+    "peer_volatility_lag1",
+    "relative_momentum"
+  ],
+  "source_parent_sha256": "58c8d02de064898f4387d5727972083d5ea3850aa94009da200f07fbad97df5e",
+  "maximum_source_date": "2024-12-31",
+  "maximum_target_maturity": "2024-12-31",
+  "gate": {
+    "volatility_ratio_definition": "volatility_5 / max(volatility_20, 1e-8)",
+    "ratio_clip": [
+      0.5,
+      2.0
+    ],
+    "transform": "natural_log"
+  },
+  "feature_order": "base_then_gate_then_fixed_signal_products",
+  "scaling": "StandardScaler fitted only on fold training rows",
+  "fit_intercept": false,
+  "threads": 2,
+  "minimum_relative_rmse_gain": 0.001,
+  "minimum_year_wins": 3,
+  "control_reference": "Best pooled RMSE of zero and all three matched linear controls",
+  "year_comparators": [
+    "linear_10000",
+    "same_alpha_linear"
+  ],
+  "tie_break": "declared_alpha_order",
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20261016,
+  "bootstrap_unit": "calendar_month_all_assets",
+  "bootstrap_quantiles": [
+    0.025,
+    0.975
+  ],
+  "bootstrap_selection_gate": false,
+  "selection": "An interaction candidate requires at least 0.1 percent pooled RMSE reduction against the strongest control, and lower RMSE in at least three of four years against both the retained ridge and its same-alpha linear control. Minimum eligible pooled RMSE wins; exact ties follow declared alpha order. Otherwise retain the existing alpha-10000 model. Linear controls are not deployed by this study.",
+  "source": "All available 2017\u20132024 observations from the frozen parent snapshot, derived before cloud upload. No 2025/2026 observation enters the private dataset. Existing full eligible validation cohort is required exactly; label maturity is purged.",
+  "smoke": "Before full fits, six 32-training-row/8-replay-row mechanics checks fit learned ridge coefficients and save/reload. These are not candidate scores or evidence of accuracy. Full selection uses every eligible row.",
+  "limits": [
+    "All validation years have prior exposure; this is retrospective model development, not independent confirmation.",
+    "Current Bank of Canada snapshots lack as-published historical vintages.",
+    "Shared CAD exposure and serial dependence limit interpretation; month-block intervals are descriptive only.",
+    "Reference rates are not executable trading quotes; no profit claim."
+  ],
+  "source_derived_sha256": "21b11ed0fb6a6d8348b39a4553763a68a9a37a4e81aa7474cb6b843c9660bacc",
+  "source_rows": 1995,
+  "source_first_date": "2017-01-03",
+  "source_last_date": "2024-12-31"
+}

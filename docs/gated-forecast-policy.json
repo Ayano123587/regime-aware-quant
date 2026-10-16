@@ -1,0 +1,86 @@
+{
+  "schema": "causal_gate_forecast_v1",
+  "assets": [
+    "FXEURCAD",
+    "FXGBPCAD",
+    "FXAUDCAD"
+  ],
+  "features": [
+    "return_1",
+    "momentum_3",
+    "momentum_5",
+    "momentum_10",
+    "momentum_20",
+    "momentum_60",
+    "volatility_5",
+    "volatility_20",
+    "volatility_60",
+    "ewma_volatility",
+    "volatility_ratio",
+    "downside_20",
+    "drawdown_60",
+    "zscore_20",
+    "rsi_14",
+    "autocorrelation_20",
+    "skew_20",
+    "gap_days",
+    "peer_return_lag1",
+    "peer_momentum_lag1",
+    "peer_volatility_lag1",
+    "relative_momentum"
+  ],
+  "training_source_sha256": "cff4c3aa15c528f308de6b7916b875ea8d60fef4c501f1bf52815f67f9e5f85e",
+  "final_mean_target_end": "2024-12-31",
+  "training_rows_per_asset": 1933,
+  "alpha": 10000,
+  "fit_intercept": false,
+  "scaler": "StandardScaler, fitted per asset on matured training rows only",
+  "gate_threshold": 1.2,
+  "gate_multiplier": 2,
+  "gate_comparison": "strict_greater_than",
+  "selection_sha256": "af2adb17f4c11a30e8db26f48b383a922c61762da7e36212b563f136a5bce7e1",
+  "saved_fold_parity_sha256": "1bb28c92e2c0cc0422a15f99745b9dc0dd99e78317453c11e027b95088561032",
+  "development_freeze_sha256": "bc7c90f3dbac0e08f7d46edf25f1bfe3952c9a06691f25e176ad7f5944ae427c",
+  "interval_alpha": 0.1,
+  "interval_scale_floor": 1e-05,
+  "calibration_decision_year": 2025,
+  "calibration_maximum_target_maturity": "2025-12-31",
+  "test_interpretation": "Already observed 2026 snapshot; retrospective, no policy selection",
+  "production_source_sha256": {
+    "src/models/gated_forecaster.py": "a5d5024f733adb5b0169d4cfc948c20aded320846aed3c79e8ea75cc79cd7715",
+    "src/models/volatility_gate_inference.py": "1dd01cf0f81392d0fb695fe4d313a8cc0b66e0469fd5fe7eed07b86255cbfa3c",
+    "src/models/regime_interactions.py": "eedd75e449f696a48b9e2f0b27d3ba41626d4d4f7792f416e8f8f27c6badab03",
+    "src/models/interaction_study.py": "ef93d79374fbe92d41d4c4989b120bf78ccd4299170b49686eec046edc26da43",
+    "src/models/volatility_gate.py": "6b45a56fe61fbcdf04e956a318694777690f310761080d0237fb06c7f2ea3e66",
+    "src/data/multi_asset.py": "5dd05aacce72715f22f772dfd12051dea8993b669aec250375b40550f3fbd2b1",
+    "src/features/multi_asset.py": "4977ec627b92bf499a4021ecadd79db7b34fe6739cc0f07acc7e3e111202467f"
+  },
+  "stages": [
+    "A: Fresh three fixed per-asset fits on frozen pre-2025 matured source; actual save/reload and checkpoint-byte freeze before future-data release",
+    "B: Separate source release for all matured 2025 decisions, execution and target in 2025; one fixed normalized 90 percent interval rule; no mean or interval selection",
+    "C: One full matured observed-2026 retrospective evaluation, selected/ungated-same-weights/zero and true legacy comparator if different; no reselection"
+  ],
+  "mean_promotion_basis": "Fixed four-candidate repeated validation development gates; 0.1173389 percent RMSE improvement, descriptive interval crosses zero; no independent edge claim",
+  "required_stage_A_proofs": [
+    "1933 exact source-derived matured feature rows per asset",
+    "Three actual learned scalers/ridge models, no reused unproven checkpoint",
+    "Full final-training prediction replay after checkpoint serialization",
+    "Standalone new-publication forecast and saved-context revision rejection on software fixture",
+    "Actual checkpoint hashes and runtime source identities frozen before stage B",
+    "Canonical coefficient/scaler numerical-state fingerprints inherited unchanged through calibration save/reload"
+  ],
+  "future_data_release": "After mean checkpoint freeze only: bind original snapshot SHA, derived complete pre2026 source SHA/rowcount and exact source-derived 2025 decision/execution/maturity ID digest plus per-asset counts in a separate hashed provenance receipt; actual feature cohort must match exactly.",
+  "interval_limits": "Serial dependence and current-vintage source prevent an exchangeability or trading-profit guarantee",
+  "public_source_only": true,
+  "mean_source_serialization": {
+    "container": "observations",
+    "sort_keys": true,
+    "separators": [
+      ",",
+      ":"
+    ],
+    "ensure_ascii": true,
+    "allow_nan": false,
+    "terminal_newline": "LF"
+  }
+}

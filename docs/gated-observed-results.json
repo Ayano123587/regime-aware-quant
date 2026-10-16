@@ -1,0 +1,219 @@
+{
+  "schema": "selected_gated_retrospective_results_v1",
+  "interpretation": "Already observed2026/current-vintage retrospective comparison; serial dependence, no exchangeability or profit guarantee",
+  "rows": 582,
+  "counts": {
+    "FXEURCAD": 194,
+    "FXGBPCAD": 194,
+    "FXAUDCAD": 194
+  },
+  "decision_ranges": {
+    "FXEURCAD": {
+      "first_decision": "2026-01-02",
+      "last_decision": "2026-10-09",
+      "last_execution": "2026-10-13",
+      "last_target_maturity": "2026-10-14"
+    },
+    "FXGBPCAD": {
+      "first_decision": "2026-01-02",
+      "last_decision": "2026-10-09",
+      "last_execution": "2026-10-13",
+      "last_target_maturity": "2026-10-14"
+    },
+    "FXAUDCAD": {
+      "first_decision": "2026-01-02",
+      "last_decision": "2026-10-09",
+      "last_execution": "2026-10-13",
+      "last_target_maturity": "2026-10-14"
+    }
+  },
+  "unmatured_excluded": {
+    "rows": 6,
+    "ids_sha256": "3b81c05e5497fd577e8729197b706f2ad88d17011888e71abfaf51bfb1444b99",
+    "per_asset": {
+      "FXEURCAD": 2,
+      "FXGBPCAD": 2,
+      "FXAUDCAD": 2
+    }
+  },
+  "metrics": {
+    "aggregate": {
+      "selected": {
+        "rows": 582,
+        "rmse": 0.002951141683243238
+      },
+      "ungated_same_mean": {
+        "rows": 582,
+        "rmse": 0.0029566597822363798
+      },
+      "zero": {
+        "rows": 582,
+        "rmse": 0.002951768212628088
+      },
+      "selected_intervals": {
+        "rows": 582,
+        "nominal_coverage": 0.9,
+        "coverage": 0.8831615120274914,
+        "mean_width": 0.009490034645787604,
+        "mean_interval_score": 0.01309861831820616
+      }
+    },
+    "per_asset": {
+      "FXEURCAD": {
+        "selected": {
+          "rows": 194,
+          "rmse": 0.002409399903552469
+        },
+        "ungated_same_mean": {
+          "rows": 194,
+          "rmse": 0.002397372630305863
+        },
+        "zero": {
+          "rows": 194,
+          "rmse": 0.002399979656800712
+        },
+        "selected_intervals": {
+          "rows": 194,
+          "nominal_coverage": 0.9,
+          "coverage": 0.8762886597938144,
+          "mean_width": 0.007474679204224162,
+          "mean_interval_score": 0.010625691090667213
+        }
+      },
+      "FXGBPCAD": {
+        "selected": {
+          "rows": 194,
+          "rmse": 0.0026718273580529557
+        },
+        "ungated_same_mean": {
+          "rows": 194,
+          "rmse": 0.002693076760571084
+        },
+        "zero": {
+          "rows": 194,
+          "rmse": 0.0026834217010498758
+        },
+        "selected_intervals": {
+          "rows": 194,
+          "nominal_coverage": 0.9,
+          "coverage": 0.9072164948453608,
+          "mean_width": 0.009754430397704445,
+          "mean_interval_score": 0.012061962755530113
+        }
+      },
+      "FXAUDCAD": {
+        "selected": {
+          "rows": 194,
+          "rmse": 0.003630956124390421
+        },
+        "ungated_same_mean": {
+          "rows": 194,
+          "rmse": 0.0036366816243403183
+        },
+        "zero": {
+          "rows": 194,
+          "rmse": 0.0036301724979017434
+        },
+        "selected_intervals": {
+          "rows": 194,
+          "nominal_coverage": 0.9,
+          "coverage": 0.865979381443299,
+          "mean_width": 0.011240994335434207,
+          "mean_interval_score": 0.016608201108421157
+        }
+      }
+    }
+  },
+  "true_legacy_comparator": {
+    "regression": {
+      "rows": 582,
+      "rmse": 0.0029566597822363798
+    },
+    "intervals": {
+      "rows": 582,
+      "nominal_coverage": 0.9,
+      "coverage": 0.8814432989690721,
+      "mean_width": 0.00941323815081681,
+      "mean_interval_score": 0.01314386173274676
+    },
+    "per_asset": {
+      "FXEURCAD": {
+        "regression": {
+          "rows": 194,
+          "rmse": 0.0023973726303058627
+        },
+        "intervals": {
+          "rows": 194,
+          "nominal_coverage": 0.9,
+          "coverage": 0.8814432989690721,
+          "mean_width": 0.007405508705201074,
+          "mean_interval_score": 0.010598102298940908
+        }
+      },
+      "FXGBPCAD": {
+        "regression": {
+          "rows": 194,
+          "rmse": 0.002693076760571084
+        },
+        "intervals": {
+          "rows": 194,
+          "nominal_coverage": 0.9,
+          "coverage": 0.9072164948453608,
+          "mean_width": 0.009711037985470771,
+          "mean_interval_score": 0.012163103843977138
+        }
+      },
+      "FXAUDCAD": {
+        "regression": {
+          "rows": 194,
+          "rmse": 0.0036366816243403183
+        },
+        "intervals": {
+          "rows": 194,
+          "nominal_coverage": 0.9,
+          "coverage": 0.8556701030927835,
+          "mean_width": 0.011123167761778584,
+          "mean_interval_score": 0.016670379055322235
+        }
+      }
+    }
+  },
+  "source_sha256": "3d0047d6b04caecf016f922f3647ce87397696c0bfea10417375ef199cdaf8a8",
+  "decision_ids_sha256": "f172833348eaff0f96599cf578535a4d86a917d67f9f165063a43770a4ea3f55",
+  "calibrated_bundle_sha256": "ca28597f9ff5c6023ed6c945bc23cc5434cc47d3817c68c11826f02f04aca60e",
+  "policy_sha256": "0f511814a9cd0e4f97626bdd8deafbe3d290b25b7829e210eeed6495c4339bd0",
+  "original_result_sha256": "4d51d5ad63d69eb1cb06b01669b85b7bcddcf360e3bb37ebf9d63300621316e6",
+  "prediction_export_sha256": "ae7445deb3f74da97052b94cdb8e9fd90a15b4d0a72b42bd666a20b31ee3143e",
+  "export_receipt_sha256": "cf7fb90a7fdf3d5d9a999a5863fc47763e9cf8b4cc27cdd4ebc782f86adc2eaf",
+  "weights_refitted": false,
+  "policy_reselected": false,
+  "independent_numeric_audit": true,
+  "current_artifact_verification": {
+    "comparison_rows": 582,
+    "forecast_rows": 588,
+    "pending_rows": 6,
+    "max_abs_difference": {
+      "selected": 5.692061405548898e-18,
+      "selected_lower": 6.071532165918825e-18,
+      "selected_upper": 6.071532165918825e-18
+    },
+    "reload_max_abs_difference": {
+      "selected": 0.0,
+      "selected_lower": 0.0,
+      "selected_upper": 0.0
+    },
+    "saved_forecast_max_abs_difference": {
+      "selected": 5.692061405548898e-18,
+      "selected_lower": 6.071532165918825e-18,
+      "selected_upper": 6.071532165918825e-18
+    },
+    "forecasts_sha256": "fc58731cfce11fae6baa56dd8c43b06886074b57e5117d3777bddb6831b2fc49",
+    "coldstart_proof_sha256": "28ef518d9166b28edb8533941985c10cfef596faf77045218f01883f4cdf4dc4",
+    "parity_code_sha256": "722dbe8951ac97f5afd09b96e2439f92aad50d32d6b4a86c35a912177a3315e1",
+    "source_sha256": "c64e0805e00a265135f122bf1df9c74091918e2f8a3567e821cbf3c96935b7e4",
+    "parity_sha256": "6e8fdbb30e915c48db13a372287a476dfaf032b81b6e145f615d4af38f1e9593",
+    "root_audit_sha256": "b9296e2ea0e2d3f3103ab44168010593a78e6e0740fbf0468280641b599ac847",
+    "score_carryover_authorized": true,
+    "accuracy_recomputed": false
+  }
+}
