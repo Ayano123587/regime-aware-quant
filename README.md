@@ -96,3 +96,7 @@ Use a separate virtual environment for each repository. These research projects 
 To replicate the prespecified development study without overwriting its recorded evidence, copy `models/development/plan.json` into a fresh output directory and run `python -m src.models.development search --output NEW_DIRECTORY`, then `python -m src.models.development test --output NEW_DIRECTORY`. The historical source checksum must match the plan; API revisions require an explicit new data/version decision. A reproduction of the now-observed 2026 test is a replication, not new independent evidence. Do not use that test to select additional settings.
 
 See [Report.md](Report.md) for the consolidated baseline/candidate table and [the shared/recency study](docs/shared-forecast-study.md) for all negative comparisons. Root `train.py` runs validation-only experiments into fresh directories; `evaluation_scripts/` provides aggregate reporting and explicit observed-cohort evaluation without silently rescoring retained baselines.
+
+## Runnable notebook
+
+The [end-to-end walkthrough](notebooks/end_to_end_walkthrough.ipynb) covers real data acquisition, optional production training, aggregate validation comparisons, plots and saved-model inference. Fetching/training/inference are explicit opt-ins; observed tests are never rescored automatically. Use the repository’s isolated environment plus Jupyter and matplotlib.
