@@ -1,5 +1,5 @@
 {
-  "tests_passed": 75,
+  "tests_passed": 77,
   "retained_cli_rows": 588,
   "matched_old_point_forecasts": 582,
   "point_max_delta": 6.776263578034403e-21,
@@ -10,5 +10,6 @@
     "shared_study.py": "a5343fc3480e0a9c94a97ea522dc9477f902303fc70d211c680f0a36f98e703f",
     "shared_forecaster.py": "fb62018228519e360e5baf0acd0899ef19163dc38d1713baad842634a9e85c98"
   },
-  "source_history": "Executed stage source hashes remain in their selections; final source adds predefined blends/recency variants and a hash-verified retained-model inference alias. No scientific scores altered."
+  "source_history": "Executed stage source hashes remain in their selections; final source adds predefined blends/recency variants and a hash-verified retained-model inference alias. No scientific scores altered.",
+  "entrypoint_guard_tests_added_after_studies": 2
 }
