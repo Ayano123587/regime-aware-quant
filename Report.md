@@ -1,32 +1,19 @@
-# Regime-aware Quant: results overview
+# FX forecasting: results and reproduction
 
-The retained v2 point forecast is a per-asset standardized ridge trained through 2024, with separate 2025 residual interval calibration. Mean-model improvements are selected chronologically; zero remains eligible.
+The retained three-asset model uses train-scaled ridge regression (alpha=10,000), with no fitted intercept. Its previously observed 2026 RMSE is 0.002956659782, compared with 0.002987248013 for the prior global tree model and 0.002951768213 for zero. The learned forecast improves the old model but does not beat zero. This is not evidence of profit or a deployable trading edge.
 
-| Procedure | Validation RMSE 2021–24 | Outcome |
-|---|---:|---|
-| Zero return | 0.00391379889 | Eligible baseline |
-| V2 per-asset ridge | 0.00391099484 | Retained |
-| Best normalized shared ridge | 0.00391120009 | Worse pooled validation |
-| Fixed half v2 / half shared | 0.00391060119 | Gain 0.0101%; fails 0.1% gate |
-| Recency per-asset three-year | 0.00391130996 | Worse pooled validation |
+Data are daily Bank of Canada EUR/CAD, GBP/CAD and AUD/CAD reference rates. The mean model trains through 2024; 2021–24 chronological folds choose its configuration. Residual calibration is separate in 2025. Features use only published observations, peer covariates lag one observation, labels span delayed t+1→t+2 returns, and boundary labels are purged. Saved inference retains full causal EWMA context. Current API snapshots lack as-published historical vintages.
 
-Observed 2026 v2 RMSE remains 0.00295666 versus zero 0.00295177 and earlier XGBoost 0.00298725. Zero still wins that retrospective period overall. The shared/blend/recency studies did not rescore 2026 or change risk/trading policy. They do not establish profit or independent prospective accuracy.
+## Preserved negative comparisons
 
-The separate online interval study also retained fixed calibration: 2025 proper interval score 0.01601720 versus rolling 120: 0.01603791 and rolling 60: 0.01638900. State-API guards were added after the scientific run and are documented separately.
+Shared, normalized, blended and recency-weighted procedures were compared on the same earlier chronological validation cohort. The closest fixed blend improved RMSE from 0.003910994838 to 0.003910601193, but missed the required 0.1% magnitude gate. Other proposals were worse. Zero remained eligible throughout. See the compact [ledger](docs/experiments.md) and structured reports for all candidates.
 
-- [Chronological v2 uncertainty study](docs/uncertainty-study.md)
-- [Delayed online interval study](docs/online-interval-study.md)
-- [Three shared/partial/recency hypotheses](docs/shared-forecast-study.md)
-- [Reference-rate publication and execution assumptions](docs/multi-asset-study.md)
+Fixed residual calibration won 2025 proper interval score: 0.01601720 versus rolling-120 0.01603791 and rolling-60 0.01638900. No rolling policy was selected by 2026 outcomes. Fixed observed coverage was 0.881443, width 0.00941324 and interval score 0.01314386. Coverage is empirical and not guaranteed under nonstationarity. The online queue records 588 arrivals including six bridge labels, 582 scored test forecasts and six pending decisions; these counts refer to different cohorts. State validation/atomicity guards were added after the scientific run without changing its scores.
 
-## Entry points
+## Reproduce
 
-```sh
-python train.py recency --output models/recency-reproduction
-python evaluation_scripts/report.py models/recency-reproduction
-python evaluation_scripts/evaluate.py --output models/recency-reproduction --observed-holdout
-```
+Use a fresh repository environment. `train.py shared|blend|recency --output models/NEW_RUN` executes validation only and refuses existing paths. Plans fix source ranges, cached paths and adoption rules. The notebook source/EDA module demonstrates production acquisition into a fresh historical snapshot. Forecasting loads an ignored local `models/uncertainty-v2/bundle.joblib` and a complete ordered panel; it calculates no accuracy by itself.
 
-Training copies the declared plan into a fresh output directory and evaluates validation only. Separate evaluation requires explicit acknowledgement of the already-observed cohort, refuses historical report overwrite and does nothing when v2 was retained. The forecast command in the shared study verifies the retained checkpoint hash before loading it. Use one isolated environment per repository.
+Checkpoint SHA256: `b5c263242f18a99307436df1545e5a46434deaf12fb8fd877c0e565a8289010c`. The observed test snapshot hash and exact metrics are recorded in [models/uncertainty-v2/results.json](models/uncertainty-v2/results.json). No weights, source rows, predictions or online states are distributed. Source terms are in [docs/datasets.md](docs/datasets.md).
 
-Implementation remains under `src/`, tests under `tests/`, and notebooks are EDA-only. Only aggregate protocols/results/hashes are committed; market snapshots, predictions, queue state, trained weights and secrets remain ignored. This reporting organization follows the supplied [project-structure reference](https://github.com/yash9439/Finetuning-Opus-MT-en-fr-WikiData), with original forecasting implementation and evidence.
+The three executed analysis notebooks include readable causal feature/fit/calibration code, actual chronological tables, aggregate error/interval plots and saved-checkpoint mechanics. They never rescore an observed test. Standalone figures are in `docs/figures`. The last source suite had 77 passing tests; notebook execution is recorded separately.
