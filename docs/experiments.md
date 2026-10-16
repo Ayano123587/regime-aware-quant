@@ -1,9 +1,5 @@
-# Experiment ledger
+# Validation selection
 
-| Study | Selection window/objective | Outcome |
-|---|---|---|
-| Regularized uncertainty v2 | 2021–24 purged chronological RMSE; zero eligible | Ridge alpha 10000; final mean through 2024, calibration 2025 |
-| Shared / blend / recency | Same chronological cohort; >=0.1% gain and >=3/4 year wins | Retain v2; closest blend failed magnitude gate |
-| Online intervals v3 | 2025 proper interval score before 2026 replay | Fixed beats rolling 60/120; no adaptive policy forced |
+Chronological 2021-24 folds compare train-scaled ridge regression with zero return; zero remains eligible. Ridge alpha 10,000 has validation RMSE 0.003910994838, versus zero 0.003913798892. Mean models fit labels through 2024; 2025 labels calibrate intervals separately.
 
-Structured plans are `docs/uncertainty-plan.json`, `docs/shared-forecast-plan.json`, `docs/shared-blend-plan.json`, `docs/shared-recency-plan.json` and `docs/online-interval-plan.json`. Exact candidates, source hashes, runtimes and failures remain in corresponding aggregate model directories. Shared studies used132 ridge fits and approximately 6.8 seconds total scientific CPU wall time; no numerical failures. Previously observed 2026 outcomes were not used for followup selection. State guards were added after the online study; the source/executed-hash distinction remains in its attestation. Raw data, forecasts, ledgers, state histories and weights stay ignored.
+Fixed residual calibration wins 2025 proper interval score: 0.01601720, versus rolling-120 0.01603791 and rolling-60 0.01638900. No interval policy is selected by 2026 outcomes. The observed 2026 cohort is retrospective, with 582 matured targets and six pending decisions. Source snapshots, selected configuration and aggregate metrics are tracked; raw values, predictions, state histories and checkpoints stay ignored.

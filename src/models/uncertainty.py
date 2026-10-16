@@ -101,9 +101,9 @@ def search_candidates(development, plan):
     return candidates, min(candidates, key=lambda x: x['pooled_validation_rmse'])['spec']
 
 
-def run(output='models/uncertainty-v2', plan_path='docs/uncertainty-plan.json'):
+def train_selected(output, plan_path='docs/uncertainty-plan.json'):
     output = Path(output)
-    if (output / 'results.json').exists():
+    if output.exists():
         raise ValueError("Retrospective report already exists; use a fresh reproduction directory")
     plan = json.loads(Path(plan_path).read_text(encoding='utf-8'))
     # This implementation supports only the frozen chronological design.
@@ -135,9 +135,27 @@ def run(output='models/uncertainty-v2', plan_path='docs/uncertainty-plan.json'):
     checkpoint = {'version': 'uncertainty_v2', 'assets': ASSETS, 'bundles': bundles,
                   'context': prior, 'selection_sha256': sha(output / 'selection.json')}
     joblib.dump(checkpoint, output / 'bundle.joblib')
+    return selection
+
+
+def evaluate_selected(output, report_directory, predictions, *, acknowledge_observed=False):
+    if not acknowledge_observed:
+        raise ValueError('Explicit acknowledgement of observed 2026 evaluation required')
+    output, report_directory, predictions = Path(output), Path(report_directory), Path(predictions)
+    if report_directory.exists() or predictions.exists():
+        raise ValueError('Fresh report directory and predictions path required')
+    if predictions.resolve() == (output / 'bundle.joblib').resolve():
+        raise ValueError('Predictions must not replace checkpoint')
+    selection = json.loads((output / 'selection.json').read_text(encoding='utf-8'))
+    checkpoint = joblib.load(output / 'bundle.joblib')
+    if checkpoint['selection_sha256'] != sha(output / 'selection.json'):
+        raise ValueError('Selection fingerprint mismatch')
+    prior, bundles, selected = checkpoint['context'], checkpoint['bundles'], selection['selected']
+    plan = {'study': 'regularized-uncertainty-v2', 'disclosure': selection['disclosure']}
     test, test_provenance = fetch_snapshot('data/external/multi-asset-v1/holdout', '2026-01-01', '2026-10-14')
     combined = validate_panel(pd.concat([prior, test], ignore_index=True))
     frames = build_panel_features(combined)
+    prediction_path = predictions
     predictions, metrics = [], {}
     for asset in ASSETS:
         rows = frames[asset].loc[(frames[asset].date >= test.date.min()) & frames[asset].target.notna()]
@@ -150,9 +168,9 @@ def run(output='models/uncertainty-v2', plan_path='docs/uncertainty-plan.json'):
         predictions.append(pd.DataFrame({'date': rows.date, 'asset': asset, 'target': rows.target,
                                          'prediction': predicted, 'half_width': widths}))
     recorded = pd.concat(predictions, ignore_index=True)
-    local = Path('data/interim/uncertainty-v2')
-    local.mkdir(parents=True, exist_ok=True)
-    recorded.to_csv(local / 'predictions.csv', index=False, lineterminator='\n')
+    prediction_path.parent.mkdir(parents=True, exist_ok=True)
+    with prediction_path.open('x', encoding='utf-8', newline='') as stream:
+        recorded.to_csv(stream, index=False, lineterminator='\n')
     loaded = joblib.load(output / 'bundle.joblib')
     replay = forecast(loaded, test)
     matched = recorded.merge(replay, on=['date', 'asset'], validate='one_to_one', suffixes=('_recorded', '_loaded'))
@@ -173,27 +191,49 @@ def run(output='models/uncertainty-v2', plan_path='docs/uncertainty-plan.json'):
                               'Nominal 90% intervals have no finite-sample guarantee under temporal dependence or drift.',
                               'Both interval variants are reported, not selected by 2026 score.',
                               'Reference rates are non-executable; no trading policy is changed by this study.']}
-    write(output / 'results.json', report)
+    write(report_directory / 'results.json', report)
     print(json.dumps(report, indent=2))
     return report
 
 
+def run(output='models/uncertainty-v2', plan_path='docs/uncertainty-plan.json', *, acknowledge_observed=False, report_directory=None, predictions=None):
+    if not acknowledge_observed or report_directory is None or predictions is None:
+        raise ValueError('Observed evaluation requires acknowledgement and explicit fresh report/predictions paths')
+    if Path(report_directory).exists() or Path(predictions).exists():
+        raise ValueError('Fresh report and predictions paths required')
+    train_selected(output, plan_path)
+    return evaluate_selected(output, report_directory, predictions, acknowledge_observed=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=['study', 'forecast'])
-    parser.add_argument('--output', default='models/uncertainty-v2')
+    parser.add_argument('action', choices=['train', 'evaluate', 'study', 'forecast'])
+    parser.add_argument('--output', required=True)
     parser.add_argument('--panel')
-    parser.add_argument('--predictions', default='data/interim/uncertainty-v2/new-forecasts.csv')
+    parser.add_argument('--predictions')
+    parser.add_argument('--report-directory')
+    parser.add_argument('--acknowledge-observed', action='store_true')
     args = parser.parse_args()
-    if args.action == 'study':
-        run(args.output)
+    if args.action == 'train':
+        train_selected(args.output)
+    elif args.action in ['evaluate', 'study']:
+        if not args.acknowledge_observed or not args.report_directory or not args.predictions:
+            parser.error('evaluation requires --acknowledge-observed, --report-directory and --predictions')
+        fn = run if args.action == 'study' else evaluate_selected
+        if args.action == 'study':
+            fn(args.output, acknowledge_observed=True, report_directory=args.report_directory, predictions=args.predictions)
+        else:
+            fn(args.output, args.report_directory, args.predictions, acknowledge_observed=True)
     else:
-        if not args.panel:
-            parser.error('forecast requires --panel')
-        result = forecast(joblib.load(Path(args.output) / 'bundle.joblib'), pd.read_csv(args.panel))
+        if not args.panel or not args.predictions:
+            parser.error('forecast requires --panel and explicit fresh --predictions')
         path = Path(args.predictions)
+        if path.exists():
+            raise ValueError('Forecast output already exists')
+        result = forecast(joblib.load(Path(args.output) / 'bundle.joblib'), pd.read_csv(args.panel))
         path.parent.mkdir(parents=True, exist_ok=True)
-        result.to_csv(path, index=False, lineterminator='\n')
+        with path.open('x', encoding='utf-8', newline='') as stream:
+            result.to_csv(stream, index=False, lineterminator='\n')
         print(json.dumps({'rows': len(result), 'output': str(path)}))
 
 
