@@ -1,0 +1,76 @@
+{
+  "study": "shared-normalized-forecast-v4",
+  "hypothesis": "Reduce estimation variance with fewer features and shared cross-asset regression. Causal decision-time volatility normalization may make conditional effects comparable across assets.",
+  "assets": [
+    "FXEURCAD",
+    "FXGBPCAD",
+    "FXAUDCAD"
+  ],
+  "validation_years": [
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "candidates": [
+    {
+      "name": "zero",
+      "kind": "zero"
+    },
+    {
+      "name": "v2_full",
+      "kind": "per_asset",
+      "features": "full",
+      "alpha": 10000
+    },
+    {
+      "name": "reduced_per_asset",
+      "kind": "per_asset",
+      "features": "reduced",
+      "alpha": 10000
+    },
+    {
+      "name": "pooled_raw",
+      "kind": "pooled",
+      "features": "reduced",
+      "alpha": 10000
+    },
+    {
+      "name": "pooled_normalized_1000",
+      "kind": "pooled_normalized",
+      "features": "reduced",
+      "alpha": 1000
+    },
+    {
+      "name": "pooled_normalized_10000",
+      "kind": "pooled_normalized",
+      "features": "reduced",
+      "alpha": 10000
+    },
+    {
+      "name": "pooled_normalized_30000",
+      "kind": "pooled_normalized",
+      "features": "reduced",
+      "alpha": 30000
+    }
+  ],
+  "reduced_features": [
+    "return_1",
+    "momentum_3",
+    "momentum_20",
+    "zscore_20",
+    "rsi_14",
+    "autocorrelation_20",
+    "peer_return_lag1",
+    "volatility_ratio"
+  ],
+  "selection": "Zero and v2 are always eligible. New candidates require pooled chronological validation RMSE at least 0.1% lower than best zero/v2 and lower RMSE in at least three of four years. Then minimum pooled RMSE; ties prefer candidate order.",
+  "normalization": "Only current decision-time causal EWM volatility, clipped at 1e-5; returns/peer return divided by scale, momenta divided by scale times sqrt horizon; normalized training targets y/scale; predictions multiplied by current saved scale.",
+  "training": "Each chronological fold purges any training label maturing on or after its first validation decision; scaler fits only fold training rows. Pooled fit stacks assets but never shuffles future dates into training.",
+  "final_training_label_end": "2024-12-31",
+  "interval_calibration_year": 2025,
+  "test": "Observed 2026 snapshots; descriptive only, no candidate selection from test. If v2 retained, do not rescore 2026. If procedure changes, freeze selection before one replay, retaining fixed v2 comparison.",
+  "maximum_cpu_seconds": 600,
+  "threads": 2,
+  "disclosure": "All periods have been observed previously. This retrospective model development cannot establish independent generalization, guaranteed coverage, returns or profit. Shared CAD exposures induce correlation; pooling changes effective penalty and is a procedure comparison."
+}

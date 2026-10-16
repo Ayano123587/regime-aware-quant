@@ -1,0 +1,258 @@
+{
+  "plan_sha256": "0ecfefd8a3d349668ce38955f0f40c25008107d40dc8737def95fc51eaf6ce71",
+  "implementation_sha256": "c219127802f0f85a329de64ed1bc2d532ca85b6cd41cc241502cd34909442a79",
+  "procedure_sha256": "cca6f415050bfbb29d021918dfae96d753999c116de9f779d2789b4f7ea6c6a5",
+  "runs": [
+    {
+      "spec": {
+        "name": "zero",
+        "kind": "zero"
+      },
+      "pooled_validation_rmse": 0.003913798891652039,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.003509772552732489
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004873579787696266
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004001421373076263
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.00304156960375828
+        }
+      ],
+      "runtime_seconds": 0.16866769999614917
+    },
+    {
+      "spec": {
+        "name": "v2_full",
+        "kind": "per_asset",
+        "features": "full",
+        "alpha": 10000
+      },
+      "pooled_validation_rmse": 0.0039109948384311215,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.003502505263243202
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.0048669088902775414
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004000885649674437
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.00304684828446065
+        }
+      ],
+      "runtime_seconds": 0.2246774999948684
+    },
+    {
+      "spec": {
+        "name": "reduced_per_asset",
+        "kind": "per_asset",
+        "features": "reduced",
+        "alpha": 10000
+      },
+      "pooled_validation_rmse": 0.00391247743166639,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035048681008489142
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004875757072385726
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.004000102103288994
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.003038694638951418
+        }
+      ],
+      "runtime_seconds": 0.17823370001860894
+    },
+    {
+      "spec": {
+        "name": "pooled_raw",
+        "kind": "pooled",
+        "features": "reduced",
+        "alpha": 10000
+      },
+      "pooled_validation_rmse": 0.0039119470420580565,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035025511825918167
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.0048771360258922855
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.003998245189407125
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.003038866744947589
+        }
+      ],
+      "runtime_seconds": 0.13565939999534748
+    },
+    {
+      "spec": {
+        "name": "pooled_normalized_1000",
+        "kind": "pooled_normalized",
+        "features": "reduced",
+        "alpha": 1000
+      },
+      "pooled_validation_rmse": 0.0039120190409256215,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035002084273701006
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.00487850943305947
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.003995122471155772
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.003043807142016536
+        }
+      ],
+      "runtime_seconds": 0.15982649999205023
+    },
+    {
+      "spec": {
+        "name": "pooled_normalized_10000",
+        "kind": "pooled_normalized",
+        "features": "reduced",
+        "alpha": 10000
+      },
+      "pooled_validation_rmse": 0.003911200088974499,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.0035027826604398233
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004874986121906209
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.003996952953087191
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.0030398824286573503
+        }
+      ],
+      "runtime_seconds": 0.1444922999944538
+    },
+    {
+      "spec": {
+        "name": "pooled_normalized_30000",
+        "kind": "pooled_normalized",
+        "features": "reduced",
+        "alpha": 30000
+      },
+      "pooled_validation_rmse": 0.0039120709583456035,
+      "folds": [
+        {
+          "year": 2021,
+          "rows": 741,
+          "rmse": 0.003506081237134786
+        },
+        {
+          "year": 2022,
+          "rows": 738,
+          "rmse": 0.004873827618597097
+        },
+        {
+          "year": 2023,
+          "rows": 738,
+          "rmse": 0.003998853207407339
+        },
+        {
+          "year": 2024,
+          "rows": 744,
+          "rmse": 0.003039918646314494
+        }
+      ],
+      "runtime_seconds": 0.16472659999271855
+    }
+  ],
+  "failures": [],
+  "selected": {
+    "name": "v2_full",
+    "kind": "per_asset",
+    "features": "full",
+    "alpha": 10000
+  },
+  "test_used_for_selection": false,
+  "development_provenance": {
+    "url": "https://www.bankofcanada.ca/valet/observations/FXEURCAD,FXGBPCAD,FXAUDCAD/json?start_date=2017-01-01&end_date=2025-12-31",
+    "sha256": "58c8d02de064898f4387d5727972083d5ea3850aa94009da200f07fbad97df5e",
+    "assets": [
+      "FXEURCAD",
+      "FXGBPCAD",
+      "FXAUDCAD"
+    ],
+    "rows": 2244,
+    "first": "2017-01-03 00:00:00+00:00",
+    "last": "2025-12-31 00:00:00+00:00",
+    "retrieved_at_utc": "2026-10-15T20:09:46.213010+00:00",
+    "source": "Bank of Canada, Valet API; no endorsement",
+    "terms": "https://www.bankofcanada.ca/terms/",
+    "vintage_limitation": "Current API snapshot, not historical as-published vintages"
+  },
+  "runtime_seconds": 1.470448900014162,
+  "disclosure": "All periods have been observed previously. This retrospective model development cannot establish independent generalization, guaranteed coverage, returns or profit. Shared CAD exposures induce correlation; pooling changes effective penalty and is a procedure comparison.",
+  "deployment_changed": false,
+  "test_evaluated": false,
+  "retained_checkpoint_sha256": "b5c263242f18a99307436df1545e5a46434deaf12fb8fd877c0e565a8289010c"
+}
